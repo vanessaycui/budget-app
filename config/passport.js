@@ -1,5 +1,5 @@
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy
+const GoogleStrategy = require("passport-google-oauth20").Strategy
 const User = require('../models/user')
 
 passport.use(
@@ -10,33 +10,28 @@ passport.use(
       callbackURL: process.env.GOOGLE_CALLBACK,
     },
     // verify callback
-    function (accessToken, refreshToken, profile, cb) {
+    async function (accessToken, refreshToken, profile, cb) {
       console.log(profile)
-      User.findOne({ googleId: profile.id }, function (err, user) {
-        if (err) {
-          console.log("error finding user")
-          return cb(err);
-        }
-        if (user) {
-          console.log("found user in db")
-          console.log(user)
-          return cb(null, user);
-        } else {
-          console.log("new user! creating new user")
-          var newUser = new User({
-            name: profile.displayName,
-            email: profile.emails[0].value,
-            googleId: profile.id,
-          });
-          newUser.save(function (err) {
-            if (err){
-              console.log("error saving new user")
-              return cb(err);
-            }
-            return cb(null, newUser);
-          });
-        }
-      });
+      let user = await User.findOne({ googleId: profile.id })
+      if (user) {
+        console.log("found user in db")
+        console.log(user)
+        return cb(null, user);
+      } else {
+        console.log("new user! creating new user")
+        var newUser = new User({
+          name: profile.displayName,
+          email: profile.emails[0].value,
+          googleId: profile.id,
+        });
+        newUser.save(function (err) {
+          if (err){
+            console.log("error saving new user")
+            return cb(err);
+          }
+          return cb(null, newUser);
+        });
+      }
     }
   )
 );
@@ -44,7 +39,9 @@ passport.use(
 //setup session, pass authenticated user data
 passport.serializeUser(function(user, done) {
   console.log("serialize user")
-  done(null, user.id)
+
+    done(null, user.id);
+
 })
 
 //if existing user, return a user to passport to set req.user

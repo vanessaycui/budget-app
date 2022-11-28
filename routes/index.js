@@ -8,17 +8,21 @@ router.get('/', function(req, res) {
 
 router.get('/auth/google', passport.authenticate(
   'google',
-  { scope: ['profile', 'email'] }
+  { scope: ['profile','email'] }
 ));
 
 //this is the google callback route after user confirms. 
 router.get('/oauth2callback', passport.authenticate(
   'google',
   {
-    successRedirect: '/dashboards',
+    // successRedirect: '/dashboards',
     failureRedirect: '/'
   }
-));
+), (req,res)=>{
+
+  res.redirect('/dashboards')
+
+});
 
 // OAuth logout route
 router.get('/logout', function(req, res){
