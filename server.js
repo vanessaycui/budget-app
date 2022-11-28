@@ -1,4 +1,4 @@
-//var createError = require('http-errors');
+
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -16,8 +16,6 @@ var app = express();
 //connect to mongoDB with mongoose, configure passport.js
 require('./config/database')
 require('./config/passport')
-
-
 
 var indexRouter = require('./routes/index');
 var dashboardsRouter = require('./routes/dashboards');
@@ -46,7 +44,7 @@ app.use('/dashboards', dashboardsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  res.status(404).send('Cant find that!')
 });
 
 // error handler

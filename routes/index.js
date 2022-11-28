@@ -2,7 +2,7 @@ var router = require('express').Router();
 const passport = require('passport')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   res.render('index');
 });
 
@@ -16,9 +16,15 @@ router.get('/oauth2callback', passport.authenticate(
   'google',
   {
     successRedirect: '/dashboards',
-    failureRedirect: '/dashboards'
+    failureRedirect: '/'
   }
 ));
 
+// OAuth logout route
+router.get('/logout', function(req, res){
+  req.logout(function(err){
+    res.redirect('/');
+  });
+});
 
 module.exports = router;

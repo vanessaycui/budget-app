@@ -11,11 +11,12 @@ passport.use(
     },
     // verify callback
     function (accessToken, refreshToken, profile, cb) {
+      console.log(profile)
       User.findOne({ googleId: profile.id }, function (err, user) {
-        // if (err) {
-        //   console.log("error finding user")
-        //   return cb(err);
-        // }
+        if (err) {
+          console.log("error finding user")
+          return cb(err);
+        }
         if (user) {
           console.log("found user in db")
           console.log(user)
@@ -42,11 +43,13 @@ passport.use(
 
 //setup session, pass authenticated user data
 passport.serializeUser(function(user, done) {
+  console.log("serialize user")
   done(null, user.id)
 })
 
 //if existing user, return a user to passport to set req.user
 passport.deserializeUser(function(id, done) {
+  console.log("deserialize user")
   User.findById(id, function(err, user) {
     if (err){
       console.log("error finding and deserializing user")
