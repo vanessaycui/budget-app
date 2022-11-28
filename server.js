@@ -1,21 +1,26 @@
-var createError = require('http-errors');
+//var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var methodOverride = require('method-override');
 var session = require('express-session');
-var passport = require('./config/passport');
+var passport = require('passport');
+var methodOverride = require('method-override');
 
 //load the env vars
-// require('dotenv').config();
-// require('./config/database')
-// require('./config/passport')
+require('dotenv').config();
+
+//create express app
+var app = express();
+
+//connect to mongoDB with mongoose, configure passport.js
+require('./config/database')
+require('./config/passport')
+
+
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-var app = express();
+var dashboardsRouter = require('./routes/dashboards');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,17 +32,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));  
-//passport/oauth/session:
-// app.use(session({
-//   secret: 'budgetapp',
-//   resave: false,
-//   saveUninitialized: true
-// }))
-// app.use(passport.initialize())
-// app.use(passport.session())
+// passport/oauth/session:
+app.use(session({
+  secret: 'budgetapp',
+  resave: false,
+  saveUninitialized: true
+}))
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/dashboards', dashboardsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
