@@ -7,8 +7,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/auth/google', passport.authenticate(
-  'google',
-  { scope: ['profile','email'] }
+  'google'
 ));
 
 //this is the google callback route after user confirms. 
