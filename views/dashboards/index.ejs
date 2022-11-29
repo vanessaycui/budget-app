@@ -1,8 +1,19 @@
 <%- include("../partials/header.ejs")%>
-    <h1>Welcome Back</h1>
-    <h2>Your Dashboards</h2>
-    <a href="/dashboards/logout">Log Out </a>
 
-    
+    <h1>Welcome Back, <%=user.name%></h1>
+    <a href="/dashboards/logout">Log Out </a>
+<!-- list all of user's dashboard(s) -->
+    <% if (dashboards.length !== 0) { %>
+        <h2>Your Dashboards:</h2>
+        <%dashboards.forEach(dashboard=>{%>
+            <a href=""><%=dashboard.title%></a>
+            <br>
+        <%})%>
+        <a href="/dashboards/new">Add A New Dashboard</a>
+<!-- user has no dashboards, prompt user to create a new dashboard -->
+    <%} else {%>
+        <br>
+        <a href="/dashboards/new"> Create a new dashboard to begin</a>
+    <%}%>
 
 <%- include("../partials/footer.ejs")%>

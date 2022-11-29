@@ -1,5 +1,5 @@
 const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy
+const GoogleStrategy = require("passport-google-oauth20")
 const User = require('../models/user')
 
 passport.use(
@@ -8,16 +8,14 @@ passport.use(
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_SECRET,
       callbackURL: process.env.GOOGLE_CALLBACK,
-      scope: [ 'profile', 'email' ],
-      state:true
+      scope: ['profile', 'email'],
+      state: true
     },
     // verify callback
     async function (accessToken, refreshToken, profile, cb) {
-      console.log(profile)
       let user = await User.findOne({ googleId: profile.id })
       if (user) {
         console.log("found user in db")
-        console.log(user)
         return cb(null, user);
       } else {
         console.log("new user! creating new user")
@@ -41,9 +39,7 @@ passport.use(
 //setup session, pass authenticated user data
 passport.serializeUser(function(user, done) {
   console.log("serialize user")
-
     done(null, user.id);
-
 })
 
 //if existing user, return a user to passport to set req.user

@@ -2,8 +2,12 @@
     <h1>Budget App </h1>
     <p>Please login to start</p>
 
+    <% if (user) {%>
+        <a href="/logout">Logout</a>
+    <%} else {%>
+        <a href="/auth/google">Login</a>
+    <%}%>
 
-    <a href="/auth/google">Login</a>
-    <a href="/logout">Logout</a>
-
+    <h2>Achieve Financial Independence Today :)</h2>
+    
 <%- include("./partials/footer.ejs")%>
