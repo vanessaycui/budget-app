@@ -4,12 +4,11 @@ const Dashboard = require('../models/dashboard')
 module.exports = {
   index,
   logout,
-  new: newDashboard,
   create: createDashboard
 };
 
 function index(req, res) {
-  //show user dashboards
+  //show dashboards associated with user.
   Dashboard.find({users: req.user.id}).populate('users').exec(function(err, dashboards){
       console.log(dashboards)
       res.render('dashboards/index', {
@@ -19,19 +18,15 @@ function index(req, res) {
   })
 }
 
-function newDashboard(req, res){
-  res.render('dashboards/new')
-}
-
 function createDashboard(req, res){
   req.body.users = req.user.id
   let dashboard = new Dashboard(req.body)
   dashboard.save(function(err){
     if (err){
       console.log(err)
-      return res.render('/dashboards/new')
+      return res.render('/dashboards')
     }
-    res.redirect('/dashboards/new')
+    res.redirect('/dashboards')
   })
   
 }

@@ -9,11 +9,19 @@
             <a href=""><%=dashboard.title%></a>
             <br>
         <%})%>
-        <a href="/dashboards/new">Add A New Dashboard</a>
+
 <!-- user has no dashboards, prompt user to create a new dashboard -->
-    <%} else {%>
-        <br>
-        <a href="/dashboards/new"> Create a new dashboard to begin</a>
-    <%}%>
+    <%} %>
+    <button id="create-dash-btn"> Create a new dashboard</button>
+    <br>
+    <section id="dashboard-creation">
+        <form action="/dashboards" method="POST">
+            <label for="name">Dashboard title:</label>
+            <br>
+            <input type="text" name="title">
+            <br>
+            <button type="submit"> Done </button>
+        </form>
+    </section>
 
 <%- include("../partials/footer.ejs")%>

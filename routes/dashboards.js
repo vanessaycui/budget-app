@@ -4,7 +4,6 @@ var dashboardsCtrl = require('../controllers/dashboards')
 
 /* GET users listing. */
 router.get('/', dashboardsCtrl.index);
-router.get('/new', dashboardsCtrl.new)
 router.post('/', dashboardsCtrl.create)
 
 
