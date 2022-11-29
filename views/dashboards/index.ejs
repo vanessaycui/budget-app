@@ -6,7 +6,7 @@
     <% if (dashboards.length !== 0) { %>
         <h2>Your Dashboards:</h2>
         <%dashboards.forEach(dashboard=>{%>
-            <a href=""><%=dashboard.title%></a>
+            <a href="/dashboards/<%=dashboard.id%>"><%=dashboard.title%></a>
             <br>
         <%})%>
 
@@ -14,7 +14,7 @@
     <%} %>
     <button id="create-dash-btn"> Create a new dashboard</button>
     <br>
-    <section id="dashboard-creation">
+    <section id="dashboard-creation" class="hide-form">
         <form action="/dashboards" method="POST">
             <label for="name">Dashboard title:</label>
             <br>
