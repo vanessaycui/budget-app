@@ -17,6 +17,9 @@ const categorySchema = new Schema({
     min: 0,
   }
 })	
+const incomeSchema = new Schema({
+  incomeType: String
+})	
 
 var dashboardSchema = new mongoose.Schema({
   title: {
@@ -33,7 +36,8 @@ var dashboardSchema = new mongoose.Schema({
     ref: 'User',
   },
   categories: [categorySchema],
-  members: [memberSchema]
+  members: [memberSchema],
+  incomes: [incomeSchema]
 }, {
   timestamps: true
 });

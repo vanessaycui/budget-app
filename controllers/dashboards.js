@@ -11,7 +11,6 @@ module.exports = {
 function index(req, res) {
   //show dashboards associated with user.
   Dashboard.find({users: req.user.id}).populate('users').exec(function(err, dashboards){
-      console.log(dashboards)
       res.render('dashboards/index', {
         user: req.user,
         dashboards
@@ -21,7 +20,7 @@ function index(req, res) {
 
 function show(req, res){
   Dashboard.findById(req.params.id,function( err, userDash){
-    console.log(userDash)
+    
     res.render('dashboards/show',{dashboard: userDash} )
   })
   

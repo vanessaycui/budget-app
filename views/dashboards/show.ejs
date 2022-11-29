@@ -5,4 +5,108 @@
     <!-- this will be a chart showing all the cool data -->
 
 
+
+
+    <!-- numerical data below -->
+    <section id="data-head">
+        <div class="data-head">
+            <p>Categories</p>
+            <button id="add-cat-btn">+</button>
+        </div>
+        <div class="data-head">
+            <p> Prev. Month</p>
+        </div>
+        <div class="data-head">
+            
+            <p>Month Avg.</p>
+            <input type="select" value="month">
+        </div>
+        <div class="data-head">
+            <p>Current Month</p>
+        </div>
+        <div class="data-head"> 
+        </div>
+    </section>
+    <section id="data-row">
+        
+
+        <div class="data-col">
+            <div id="cat-list" >
+                <% for (let category of dashboard.categories ){ %>
+                    <p> <%=category.category%></p>
+                <%}%>
+            </div>
+            <div id="cat-form" style="display:none" class="data-col">
+                <form action="/dashboards/<%=dashboard.id%>/categories" method="POST">
+                    <label for="category">New Category:</label>
+                    <br>
+                    <input type="text" name="category">
+                    <br>
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+            <div id="income-list">
+                <% for (let income of dashboard.incomes){ %>
+                    <p> <%=income.incomeType%></p>
+                <%}%>
+            </div>
+            <div id="income-form" style="display:none">
+                <form action="/dashboards/<%=dashboard.id%>/incomes" method="POST">
+                    <label for="incomeType">New Income:</label>
+                    <br>
+                    <input type="text" name="incomeType">
+                    <br>
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+
+        </div>
+
+        
+     
+     
+
+        <div id="prev-month-list" class="data-col">
+            
+
+        </div>
+        <div id="month-overall-list" class="data-col">
+            
+
+        </div>
+        <div id="current-month-list" class="data-col">
+            
+        </div>
+
+        <div id="category-forms" class="data-col"> 
+
+        </div>
+
+
+    </section>
+    
+    <section id="data-footer">
+        <div class="data-footer">
+            <p>Income</p>
+            <button id="add-income-btn">+</button>
+        </div>
+        <div class="data-footer">
+            <p> Prev. Month</p>
+        </div>
+        <div class="data-footer">
+            
+            <p>Month Avg.</p>
+        </div>
+        <div class="data-footer">
+            <p>Current Month</p>
+        </div>
+        <div class="data-footer"> 
+        </div>
+    </section>
+
+    <a href="/dashboards"> back to main</a>
+
+
+
+<script src="/javascripts/dashboard.js"></script>
 <%- include("../partials/footer.ejs")%>
