@@ -1,7 +1,6 @@
 <%- include("../partials/header.ejs")%>
 
     <h1> <%= dashboard.title %></h1>
-
     <!-- this will be a chart showing all the cool data -->
 
 
@@ -28,19 +27,17 @@
         </div>
     </section>
     <section id="data-row">
-        
-
         <div class="data-col">
             <div id="cat-list" >
                 <% for (let category of dashboard.categories ){ %>
-                    <p> <%=category.category%></p>
+                    <p> <%=category.name%></p>
                 <%}%>
             </div>
             <div id="cat-form" style="display:none" class="data-col">
                 <form action="/dashboards/<%=dashboard.id%>/categories" method="POST">
-                    <label for="category">New Category:</label>
+                    <label for="name">New Category:</label>
                     <br>
-                    <input type="text" name="category">
+                    <input type="text" name="name">
                     <br>
                     <button type="submit">Add</button>
                 </form>
@@ -62,11 +59,11 @@
 
         </div>
 
-        
-     
-     
-
         <div id="prev-month-list" class="data-col">
+            <% for (let entry of prevMonth ){ %>
+                <p> <%=entry%></p>
+            <%}%>
+
             
 
         </div>
@@ -87,18 +84,28 @@
     
     <section id="data-footer">
         <div class="data-footer">
-            <p>Income</p>
             <button id="add-income-btn">+</button>
+            <p>Income</p>
+            
         </div>
         <div class="data-footer">
-            <p> Prev. Month</p>
+            <div> 
+                <p>Expense Total: </p>
+                <p>Income Total: </p>
+                <p>Net Savings: </p>
+            </div>
+            
         </div>
         <div class="data-footer">
             
-            <p>Month Avg.</p>
         </div>
         <div class="data-footer">
-            <p>Current Month</p>
+            <div> 
+                <p>Expense Total: </p>
+                <p>Income Total: </p>
+                <p>Net Savings: </p>
+            </div>
+
         </div>
         <div class="data-footer"> 
         </div>

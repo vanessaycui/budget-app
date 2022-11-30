@@ -18,11 +18,11 @@ addCatBtn.addEventListener('click', (event)=>{
     catcounter++
     console.log("show cat")
     if (catcounter%2===0){
-        catList.style.display="flex"
+        catList.style.display="block"
         catForm.style.display="none"
     } else {
         catList.style.display="none"
-        catForm.style.display="flex"
+        catForm.style.display="block"
     }
 })
 
@@ -31,11 +31,11 @@ addIncomeBtn.addEventListener('click', (event)=>{
     incomecounter++
     console.log("show income")
     if (incomecounter%2===0){
-        incomeList.style.display="flex"
+        incomeList.style.display="block"
         incomeForm.style.display="none"
     } else {
         incomeList.style.display="none"
-        incomeForm.style.display="flex"
+        incomeForm.style.display="block"
     }
 })
 /*----- functions -----*/

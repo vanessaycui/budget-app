@@ -8,7 +8,7 @@ const memberSchema = new Schema({
 })	
 
 const categorySchema = new Schema({
-  category: {
+  name: {
     type: String,
     required: true
   },
