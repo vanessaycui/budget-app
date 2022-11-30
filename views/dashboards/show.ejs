@@ -38,7 +38,7 @@
   <div class="data-col-cat">
     <div id="cat-list">
       <% for (let category of dashboard.categories ){ %>
-      <p><%=category.name%></p>
+      <a href="/dashboards/<%=dashboard.id%>/categories/<%=category.id%>"><%=category.name%></a>
       <%}%>
     </div>
   </div>
@@ -179,14 +179,16 @@
     
   <tr>
     <td>
+      <div class="data-col-income">
 
-      <div id="income-list" class="data-col-income">
-        <div>
-        <% for (let income of dashboard.incomes){ %>
-        <p><%=income.incomeType%></p>
-        <%}%>
+        <div id="income-list" >
+      
+          <% for (let income of dashboard.incomes){ %>
+          <a href="/dashboards/<%=dashboard.id%>/incomes/<%=income.id%>"><%=income.incomeType%></a>
+          <%}%>
+          
         </div>
-      </div>
+    </div>
 
     </td>
     <td>
@@ -222,7 +224,7 @@
     </td>
     <td>
       <div id="entry-history" style="display:none">
-        history
+        <!-- optional -->
 
       </div>
     </td>

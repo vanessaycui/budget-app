@@ -4,6 +4,10 @@
   --column-curr-add-btn: purple;
   --column-curr-add-btn-bg: whitesmoke;
   --column-curr-add-btn-bg-hover: grey;
+  --column-cat-text-color: black;
+  --column-cat-text-color-hover: grey;
+  --column-income-text-color: green;
+  --column-income-text-color-hover: grey;
 }
 
 
@@ -82,6 +86,31 @@ body>table{
   flex: auto;
 }
 
+#cat-list>a{
+  display: block;
+  text-align: left;
+  margin: 14px 15px;
+  text-decoration: none;
+  color: var(--column-cat-text-color);
+}
+#cat-list>a:hover{
+  color: var(--column-cat-text-color-hover);
+  cursor: pointer;
+}
+
+#income-list>a{
+  display: block;
+  text-align: left;
+  margin: 14px 15px;
+  text-decoration: none;
+  color: var(--column-income-text-color);
+}
+#income-list>a:hover{
+  color: var(--column-income-text-color-hover);
+  cursor: pointer;
+}
+
+
 .data-col-income{
   margin: 0 1%;
   display: flex;
@@ -150,3 +179,22 @@ body>table{
 }
 
 
+#show-table{
+  display: block;
+  margin: 0 auto;
+  text-align: left;
+
+
+}
+#show-table>tbody>tr>td{
+  min-width: 120px;
+  
+}
+#show-table>thead>td{
+  min-width: 120px;
+  
+}
+#show-table>thead{
+  font-size: 20px;
+
+}

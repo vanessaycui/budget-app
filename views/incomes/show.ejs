@@ -1,0 +1,26 @@
+<%- include("../partials/header.ejs")%>
+<h1> Historical entries for <%=income.incomeType%>:</h1>
+
+<table id="show-table">
+    <thead>
+        <td>Date</td>
+        <td>Company</td>
+        <td>Amount</td>
+        <td>Person</td>
+        <td>Comments</td>
+    </thead>
+    <%results.forEach(entry=>{%>
+        <tr>
+            <td><p><%=entry.date.toISOString().slice(0,10)%></p></td>
+            <td><p><%=entry.company%></p></td>
+            <td><p>$<%=entry.income.toFixed(2)%></p></td>
+            <td><p><%=entry.person%></p></td>
+            <td><p><%=entry.comment%></p></td>
+            <td><a>edit</a></td>
+            <td><a>delete</a></td>
+        </tr>
+        
+    <%})%>
+
+</table>
+<%- include("../partials/footer.ejs")%>

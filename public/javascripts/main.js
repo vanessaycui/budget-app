@@ -8,6 +8,7 @@ const createDashForm = document.querySelector("#dashboard-creation")
 
 createDashBtn.addEventListener('click', (event)=>{
     createDashForm.classList.toggle("hide-form")
+    createDashBtn.classList.toggle("hide-form")
 })
 
 /*----- functions -----*/
