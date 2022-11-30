@@ -8,6 +8,7 @@
   --column-cat-text-color-hover: grey;
   --column-income-text-color: green;
   --column-income-text-color-hover: grey;
+  --dash-edit-delete-form-overlay-bg: rgba(0,0,0,0.1);
 }
 
 
@@ -22,6 +23,18 @@ a {
 
 .hide-form{
   display: none;
+}
+.form-overlay{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  top:0;
+  left: 0;
+  background-color: var(--dash-edit-delete-form-overlay-bg);
+  height: 100%;
+  width: 100%;
 }
 
 body>table{

@@ -1,6 +1,22 @@
 <%- include("../partials/header.ejs")%>
 
-<h1><%= dashboard.title %></h1>
+<h1><%= dashboard.title %> </h1> 
+<button id="settings-dash">settings</button>
+
+<div class="form-overlay" >
+  <form action="/dashboards/<%=dashboard.id%>?_method=PUT" method="POST">
+    <label>Edit Dashboard Name:</label>
+    <input type="text" name="title" value=<%=dashboard.title%>>
+    <button type="submit">Edit</button>
+  </form>
+  <form action="/dashboards/<%=dashboard.id%>?_method=DELETE" method="POST">
+    <label>I want to delete this dashboard:</label>
+    <button type="submit">delete</button>
+  </form>
+  <button id="cancel-dash-edit">cancel</button>
+
+</div>
+
 <!-- this will be a chart showing all the cool data -->
 
 <!-- TABLE HEADER -->
@@ -288,7 +304,7 @@
 </tr>
 </table>
 
-<a href="/dashboards"> back to main</a>
+<a href="/dashboards"> back to my dashboard collection</a>
 
 <script src="/javascripts/dashboard.js"></script>
 <%- include("../partials/footer.ejs")%>

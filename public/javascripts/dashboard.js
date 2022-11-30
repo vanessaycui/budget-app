@@ -38,12 +38,8 @@ cancelBtn.forEach(btn =>{
 
 
 addCatBtn.addEventListener('click', (event)=>{
-
     catForm.style.display="table"
-
     cancelBtnCat.style.display="table"
-
-        
 })
 
 
@@ -60,9 +56,7 @@ currentMonthListCat.addEventListener("click", (event)=>{
         incomeEntryForm.style.display= "none";
         categoryEntryForm.children[0][0].value=event.target.id
         entryHistory.style.display="flex"
-    
     }
-    
 })
 
 currentMonthListIncome.addEventListener("click", (event)=>{
@@ -71,9 +65,7 @@ currentMonthListIncome.addEventListener("click", (event)=>{
         incomeEntryForm.style.display= "flex";
         incomeEntryForm.children[0][0].value=event.target.id 
         entryHistory.style.display="flex"
-
     }
-    
 })
 /*----- functions -----*/
 

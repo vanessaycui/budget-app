@@ -7,6 +7,8 @@ module.exports = {
   show,
   logout,
   create: createDashboard,
+  delete: deleteDashboard,
+  update
 };
 
 function index(req, res) {
@@ -221,12 +223,26 @@ function createDashboard(req, res) {
   req.body.users = req.user.id;
   let dashboard = new Dashboard(req.body);
   dashboard.save(function (err) {
-    if (err) {
-      console.log(err);
-      return res.render("/dashboards");
-    }
     res.redirect("/dashboards");
   });
+}
+
+function deleteDashboard(req, res) {
+  Dashboard.findById(req.params.id).exec(function(err, dashboard){
+    dashboard.remove()
+    dashboard.save(function(err){
+      res.redirect("/dashboards")
+    })
+  })
+}
+function update(req, res) {
+
+  Dashboard.findById(req.params.id).exec(function(err, dashboard){
+    dashboard.title = req.body.title
+    dashboard.save(function(err){
+      res.redirect(`/dashboards/${req.params.id}`)
+    })
+  })
 }
 
 //logout OAuth user
@@ -236,4 +252,4 @@ function logout(req, res) {
   });
 }
 
-function getPrevMonth() {}
+

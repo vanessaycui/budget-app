@@ -5,10 +5,17 @@
 <!-- list all of user's dashboard(s) -->
     <% if (dashboards.length !== 0) { %>
         <h2>Your Dashboards:</h2>
-        <%dashboards.forEach(dashboard=>{%>
-            <a href="/dashboards/<%=dashboard.id%>"><%=dashboard.title%></a>
-            <br>
-        <%})%>
+  
+            <%dashboards.forEach(dashboard=>{%>
+     
+                  <a href="/dashboards/<%=dashboard.id%>"><%=dashboard.title%></a>
+                  
+        
+                
+                <br>
+            <%})%>
+
+        
 
 <!-- user has no dashboards, prompt user to create a new dashboard -->
     <%} %>
@@ -18,7 +25,7 @@
         <form action="/dashboards" method="POST">
             <label for="name">Dashboard title:</label>
             <br>
-            <input type="text" name="title">
+            <input type="text" name="title" required>
             <br>
             <button type="submit"> Done </button>
         </form>

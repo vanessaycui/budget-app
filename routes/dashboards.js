@@ -6,6 +6,8 @@ router.get('/logout', dashboardsCtrl.logout);
 /* GET users listing. */
 router.get('/', dashboardsCtrl.index);
 router.get('/:id', dashboardsCtrl.show)
+router.delete('/:id', dashboardsCtrl.delete)
+router.put('/:id', dashboardsCtrl.update)
 router.post('/', dashboardsCtrl.create)
 
 
