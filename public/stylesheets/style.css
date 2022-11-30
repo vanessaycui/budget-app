@@ -1,6 +1,8 @@
 :root{
   --column-data-color: pink;
   --column-data-income: green;
+  --column-curr-add-btn: purple;
+  --column-curr-add-btn-bg: white;
 }
 body {
   padding: 50px;
@@ -87,11 +89,47 @@ a {
   align-items: center;
   text-align: center;
   min-height: 50px;
+  height: max-content;
   min-width: 150px;
   background-color: var(--column-data-color);
   border-radius: 10px;
+  overflow: auto;
 }
 
 #income-list{
   color: var(--column-data-income)
+}
+
+#curr-add-btn{
+  text-decoration: none;
+  color: var(--column-curr-add-btn);
+  background-color: var(--column-curr-add-btn-bg);
+  padding: 1px 5px;
+  margin: 0 0 0 10px;
+  border-radius: 5px;
+  border: 1px solid var(--column-curr-add-btn);
+}
+
+#income-form>form{
+  display: flex;
+  margin: 0 0 5px 0;
+  justify-content: center;
+
+}
+
+#income-form>form>input{
+  display: flex;
+  width: 75px;
+}
+
+#cat-form>form{
+  display: flex;
+  justify-content: center;
+  margin: 0;
+
+}
+
+#cat-form>form>input{
+  display: flex;
+  width: 75px;
 }

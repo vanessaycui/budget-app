@@ -1,134 +1,116 @@
 <%- include("../partials/header.ejs")%>
 
-    <h1> <%= dashboard.title %></h1>
-    <!-- this will be a chart showing all the cool data -->
+<h1><%= dashboard.title %></h1>
+<!-- this will be a chart showing all the cool data -->
 
+<!-- numerical data below -->
+<section id="data-head">
+  <div class="data-head">
+    <p>Categories</p>
+    <button id="add-cat-btn">+</button>
+  </div>
+  <div class="data-head">
+    <p>% change</p>
+  </div>
+  <div class="data-head">
+    <p>Prev. Month</p>
+  </div>
 
+  <div class="data-head">
+    <p>Current Month</p>
+  </div>
+  <div class="data-head">
+    <p>input</p>
+  </div>
+</section>
+<section id="data-row">
+  <div class="data-col">
+    <div id="cat-list">
+      <% for (let category of dashboard.categories ){ %>
+      <p><%=category.name%></p>
+      <%}%>
+    </div>
+    <div id="cat-form" style="display: none">
+      <form action="/dashboards/<%=dashboard.id%>/categories" method="POST">
+        <input type="text" name="name" />
+        <button type="submit">Add</button>
+      </form>
+    </div>
+    <div id="income-list">
+      <% for (let income of dashboard.incomes){ %>
+      <p><%=income.incomeType%></p>
+      <%}%>
+    </div>
+    <div id="income-form" style="display: none">
+      <form action="/dashboards/<%=dashboard.id%>/incomes" method="POST">
+        <input type="text" name="incomeType" />
+        <button type="submit">Add</button>
+      </form>
+    </div>
+  </div>
+  <div id="percent-change" class="data-col">
+    <div>
+      <% for (let categoryPer of change ){ %>
+      <p><%=categoryPer%></p>
+      <%}%>
+    </div>
+    <div>
+      <% for (let incomePer of changeIncome){ %>
+      <p><%=incomePer%></p>
+      <%}%>
+    </div>
+  </div>
 
+  <div id="prev-month-list" class="data-col">
+    <div>
+      <% for (let categoryTotal of prevMonth ){ %>
+      <p><%=categoryTotal%></p>
+      <%}%>
+    </div>
+    <div>
+      <% for (let incomeTotal of prevMonthIncome ){ %>
+      <p><%=incomeTotal%></p>
+      <%}%>
+    </div>
+  </div>
 
-    <!-- numerical data below -->
-    <section id="data-head">
-        <div class="data-head">
-            <p>Categories</p>
-            <button id="add-cat-btn">+</button>
-        </div>
-        <div class="data-head">
-            <p> Prev. Month</p>
-        </div>
-        <div class="data-head">
-            
-            <p>Month Avg.</p>
-            <input type="select" value="month">
-        </div>
-        <div class="data-head">
-            <p>Current Month</p>
-        </div>
-        <div class="data-head"> 
-        </div>
-    </section>
-    <section id="data-row">
-        <div class="data-col">
-            <div id="cat-list" >
-                <% for (let category of dashboard.categories ){ %>
-                    <p> <%=category.name%></p>
-                <%}%>
-            </div>
-            <div id="cat-form" style="display:none" class="data-col">
-                <form action="/dashboards/<%=dashboard.id%>/categories" method="POST">
-                    <label for="name">New Category:</label>
-                    <br>
-                    <input type="text" name="name">
-                    <br>
-                    <button type="submit">Add</button>
-                </form>
-            </div>
-            <div id="income-list">
-                <% for (let income of dashboard.incomes){ %>
-                    <p> <%=income.incomeType%></p>
-                <%}%>
-            </div>
-            <div id="income-form" style="display:none">
-                <form action="/dashboards/<%=dashboard.id%>/incomes" method="POST">
-                    <label for="incomeType">New Income:</label>
-                    <br>
-                    <input type="text" name="incomeType">
-                    <br>
-                    <button type="submit">Add</button>
-                </form>
-            </div>
+  <div id="current-month-list" class="data-col">
+    <div>
+      <% for (let categoryTotal of currentMonth ){ %>
+      <p><%=categoryTotal%> <a id="curr-add-btn" href=""> + </a></p>
 
-        </div>
+      <%}%>
+    </div>
+    <div>
+      <% for (let incomeTotal of currentMonthIncome ){ %>
+      <p><%=incomeTotal%> <a id="curr-add-btn" href=""> + </a></p>
+      <%}%>
+    </div>
+  </div>
 
-        <div id="prev-month-list" class="data-col">
-            <div>
-            <% for (let categoryTotal of prevMonth ){ %>
-                <p> <%=categoryTotal%></p>
-            <%}%>
-        </div>
-            <div>
-            <% for (let incomeTotal of prevMonthIncome ){ %>
-                <p> <%=incomeTotal%></p>
-            <%}%>
-        </div>
+  <div id="category-forms" class="data-col"></div>
+</section>
 
-        </div>
-        <div id="month-overall-list" class="data-col">
-            
+<section id="data-footer">
+  <div class="data-footer">
+    <button id="add-income-btn">+</button>
+    <p>Income</p>
+  </div>
+  <div class="data-footer">
+    <div>
+      <p>Expense Total:</p>
+      <p>Income Total:</p>
+      <p>Net Savings:</p>
+    </div>
+  </div>
+  <div class="data-footer"></div>
+  <div class="data-footer">
+    <div></div>
+  </div>
+  <div class="data-footer"></div>
+</section>
 
-        </div>
-        <div id="current-month-list" class="data-col">
-            <div>
-            <% for (let categoryTotal of currentMonth ){ %>
-                <p> <%=categoryTotal%></p>
-            <%}%>
-            </div>
-            <div>
-            <% for (let incomeTotal of currentMonthIncome ){ %>
-                <p> <%=incomeTotal%></p>
-            <%}%>
-            </div>
-            
-        </div>
-
-        <div id="category-forms" class="data-col"> 
-
-        </div>
-
-
-    </section>
-    
-    <section id="data-footer">
-        <div class="data-footer">
-            <button id="add-income-btn">+</button>
-            <p>Income</p>
-            
-        </div>
-        <div class="data-footer">
-            <div> 
-                <p>Expense Total: </p>
-                <p>Income Total: </p>
-                <p>Net Savings: </p>
-            </div>
-            
-        </div>
-        <div class="data-footer">
-            
-        </div>
-        <div class="data-footer">
-            <div> 
-                <p>Expense Total: </p>
-                <p>Income Total: </p>
-                <p>Net Savings: </p>
-            </div>
-
-        </div>
-        <div class="data-footer"> 
-        </div>
-    </section>
-
-    <a href="/dashboards"> back to main</a>
-
-
+<a href="/dashboards"> back to main</a>
 
 <script src="/javascripts/dashboard.js"></script>
 <%- include("../partials/footer.ejs")%>
