@@ -211,3 +211,8 @@ body>table{
   font-size: 20px;
 
 }
+
+.show-header{
+  display: flex;
+  
+}

@@ -1,8 +1,21 @@
 <%- include("../partials/header.ejs")%>
-    <h1> Historical entries for <%=category.name%> category:</h1>
-    <form action="/dashboards/<%=dashboard.id%>/categories/<%=category.id%>?_method=DELETE" method="POST">
-        <button type="submit">delete category</button>
-    </form>
+    <div class="show-header">
+        <h1> Historical entries for <%=category.name%> category:</h1>
+        <button id="settings-category">settings</button>
+    </div>
+    <!-- overlay for editing categories -->
+    <div class="form-overlay" style="display:none" >
+        <form action="/dashboards/<%=dashboard.id%>/categories/<%=category.id%>?_method=PUT" method="POST">
+            <label>Edit Category Name:</label>
+            <input type="text" name="name" value=<%=category.name%>>
+            <button type="submit">Edit</button>
+        </form>
+        <form action="/dashboards/<%=dashboard.id%>/categories/<%=category.id%>?_method=DELETE" method="POST">
+            <button type="submit">delete category</button>
+        </form>
+        <button id="cancel-dash-edit">cancel</button>
+    </div>
+
     <div class="show-entries">
         <table id="show-table">
             <thead>
@@ -37,5 +50,5 @@
     </div>
     
 
-
+    <script src="/javascripts/category.js"></script
 <%- include("../partials/footer.ejs")%>

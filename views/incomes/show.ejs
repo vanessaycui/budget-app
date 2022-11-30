@@ -20,7 +20,11 @@
             <td><p><%=entry.person%></p></td>
             <td><p><%=entry.comment%></p></td>
             <td><a>edit</a></td>
-            <td><a>delete</a></td>
+            <td>
+                <form action="/entries/<%=entry.id%>/incomes/<%=income.id%>?_method=DELETE" method="POST">
+                    <button type="submit">delete</button>
+                </form>
+            </td>
         </tr>
         
     <%})%>

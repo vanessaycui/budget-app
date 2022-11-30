@@ -5,6 +5,7 @@ module.exports = {
     show,
     create: createCategory,
     delete: deleteCategory,
+    update
 };
 
 function show(req, res){
@@ -20,10 +21,6 @@ function show(req, res){
             }
         })
     })
-
-
-    
-
 }
 
 function createCategory(req, res){
@@ -39,12 +36,32 @@ function deleteCategory(req,res){
     Dashboard.findById(req.params.dId, function(err, dashboard){
         dashboard.categories.forEach(category=> {
             if (category.id === req.params.cId){
-                category.remove()
+                Entry.deleteMany({category:category.name, dashboard: dashboard.id}).exec(function(err){
+                    category.remove()
+                    dashboard.save(function(err){
+                        res.redirect(`/dashboards/${req.params.dId}`)
+                    })
+                })
             }
         })
-        dashboard.save(function(err){
-            res.redirect(`/dashboards/${req.params.dId}`)
+    })
+}
+
+
+function update(req,res){
+    Dashboard.findById(req.params.dId, function(err, dashboard){
+        dashboard.categories.forEach(category=> {
+            if (category.id === req.params.cId){
+                
+                Entry.updateMany({category: category.name, dashboard: dashboard.id}, {$set: {category:req.body.name}}).exec(function(err){
+                    category.name = req.body.name
+                    dashboard.save(function(err){
+                        res.redirect(`/dashboards/${req.params.dId}/categories/${req.params.cId}`)
+                    })
+                })
+            }
         })
+        
     })
 
 }
