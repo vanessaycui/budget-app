@@ -27,10 +27,6 @@ var dashboardSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  entries: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Entry'
-  },
   users: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

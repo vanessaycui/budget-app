@@ -16,7 +16,11 @@ var entrySchema = new Schema({
     type:Number,
     min: 0
   },
-  incomeType: String
+  incomeType: String,
+  dashboard:{
+    type: Schema.Types.ObjectId,
+    ref: 'Dashboard'
+  }
 }, {
   timestamps: true
 });

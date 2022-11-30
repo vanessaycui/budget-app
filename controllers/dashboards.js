@@ -24,13 +24,13 @@ function index(req, res) {
 function show(req, res) {
   //getting dates
   const date = new Date();
-  const nextMonthDate = new Date(date.getFullYear(), date.getMonth() + 1, 1);
-  const currentMonthDate = new Date(date.getFullYear(), date.getMonth(), 1);
-  const prevMonthDate = new Date(date.getFullYear(), date.getMonth() - 1, 1);
+  const nextMonthDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+  const currentMonthDate = new Date(date.getFullYear(), date.getMonth(), 0);
+  console.log(currentMonthDate)
+  const prevMonthDate = new Date(date.getFullYear(), date.getMonth() - 1, 0);
+  console.log(prevMonthDate)
 
-  Dashboard.findById(req.params.id)
-    .populate("entries")
-    .exec(function (err, userDash) {
+  Dashboard.findById(req.params.id).exec(function (err, userDash) {
       let categories = userDash.categories;
       let incomes = userDash.incomes;
       let prevMonthEntries = [];
@@ -48,10 +48,12 @@ function show(req, res) {
                 const category = categories[i].name;
                 //find entries associated with each category and exists in userDash
                 const entry = await Entry.find({
-                  _id: { $in: userDash.entries },
+                  dashboard: req.params.id,
                   category: category,
-                  date: { $gt: prevMonthDate, $lt: currentMonthDate },
+                  date: { $gte: prevMonthDate, $lt: currentMonthDate },
                 }).then(function (result) {
+                  console.log(category)
+        
                   if (result.length === 0) {
                     catTotal.push(0);
                   } else {
@@ -59,7 +61,7 @@ function show(req, res) {
                     result.forEach((entry) => {
                       total = total + entry.cost;
                     });
-                    catTotal.push(total);
+                    catTotal.push(total.toFixed(2));
                   }
                 });
               }
@@ -77,10 +79,11 @@ function show(req, res) {
                 const income = incomes[i].incomeType;
                 //find entries associated with each incomeType and exists in userDash
                 const entry = await Entry.find({
-                  _id: { $in: userDash.entries },
+                  dashboard: req.params.id,
                   incomeType: income,
-                  date: { $gt: prevMonthDate, $lt: currentMonthDate },
+                  date: { $gte: prevMonthDate, $lt: currentMonthDate },
                 }).then(function (result) {
+             
                   if (result.length === 0) {
                     incomeTotal.push(0);
                   } else {
@@ -88,7 +91,7 @@ function show(req, res) {
                     result.forEach((entry) => {
                       total = total + entry.income;
                     });
-                    incomeTotal.push(total);
+                    incomeTotal.push(total.toFixed(2));
                   }
                 });
               }
@@ -107,10 +110,11 @@ function show(req, res) {
                 const category = categories[i].name;
                 //find entries associated with each category and exists in userDash
                 const entry = await Entry.find({
-                  _id: { $in: userDash.entries },
+                  dashboard: req.params.id,
                   category: category,
-                  date: { $gt: currentMonthDate, $lt: nextMonthDate },
+                  date: { $gte: currentMonthDate, $lt: nextMonthDate },
                 }).then(function (result) {
+      
                   if (result.length === 0) {
                     catTotal.push(0);
                   } else {
@@ -118,7 +122,7 @@ function show(req, res) {
                     result.forEach((entry) => {
                       total = total + entry.cost;
                     });
-                    catTotal.push(total);
+                    catTotal.push(total.toFixed(2));
                   }
                 });
               }
@@ -136,9 +140,9 @@ function show(req, res) {
                 const income = incomes[i].incomeType;
                 //find entries associated with each incomeType and exists in userDash
                 const entry = await Entry.find({
-                  _id: { $in: userDash.entries },
+                  dashboard: req.params.id,
                   incomeType: income,
-                  date: { $gt: currentMonthDate, $lt: nextMonthDate },
+                  date: { $gte: currentMonthDate, $lt: nextMonthDate },
                 }).then(function (result) {
                   if (result.length === 0) {
                     incomeTotal.push(0);
@@ -147,7 +151,7 @@ function show(req, res) {
                     result.forEach((entry) => {
                       total = total + entry.income;
                     });
-                    incomeTotal.push(total);
+                    incomeTotal.push(total.toFixed(2));
                   }
                 });
               }
@@ -161,13 +165,14 @@ function show(req, res) {
         ],
         function (err) {
           
-          let prevMonthTotalIncome = prevMonthEntriesIncome.reduce((acc, curr) => acc+curr, 0);
-          let prevMonthTotalExpense = prevMonthEntries.reduce((acc, curr) => acc+curr, 0);
-          let prevMonthTotalSavings = prevMonthTotalIncome - prevMonthTotalExpense
+          let prevMonthTotalIncome = prevMonthEntriesIncome.reduce((acc, curr) => acc+parseInt(curr), 0);
+          let prevMonthTotalExpense = prevMonthEntries.reduce((acc, curr) => acc+parseInt(curr), 0);
+          let prevMonthTotalSavings = (prevMonthTotalIncome - prevMonthTotalExpense).toFixed(2)
+      
 
-          let currentMonthTotalIncome = currentMonthEntriesIncome.reduce((acc, curr) => acc+curr, 0);
-          let currentMonthTotalExpense = currentMonthEntries.reduce((acc, curr) => acc+curr, 0);
-          let currentMonthTotalSavings = currentMonthTotalIncome - currentMonthTotalExpense
+          let currentMonthTotalIncome = currentMonthEntriesIncome.reduce((acc, curr) => acc+parseInt(curr), 0);
+          let currentMonthTotalExpense = currentMonthEntries.reduce((acc, curr) => acc+parseInt(curr), 0);
+          let currentMonthTotalSavings = (currentMonthTotalIncome - currentMonthTotalExpense).toFixed(2)
     
 
           //calculating the percent changes btwn categories and income
@@ -175,11 +180,11 @@ function show(req, res) {
           let perChangeIncome = [];
           for (let i = 0; i < prevMonthEntries.length; i++) {
             if (prevMonthEntries[i] === 0) {
-              perChangeSpending.push(0);
+              perChangeSpending.push((0).toFixed(2));
             } else {
               perChangeSpending.push(
-                ((currentMonthEntries[i] - prevMonthEntries[i]) * 100) /
-                  prevMonthEntries[i]
+                (((currentMonthEntries[i] - prevMonthEntries[i]) * 100) /
+                  prevMonthEntries[i]).toFixed(2)
               );
             }
           }
@@ -188,9 +193,9 @@ function show(req, res) {
               perChangeIncome.push(0);
             } else {
               perChangeIncome.push(
-                ((currentMonthEntriesIncome[i] - prevMonthEntriesIncome[i]) *
+                (((currentMonthEntriesIncome[i] - prevMonthEntriesIncome[i]) *
                   100) /
-                  prevMonthEntriesIncome[i]
+                  prevMonthEntriesIncome[i]).toFixed(2)
               );
             }
           }
@@ -199,13 +204,13 @@ function show(req, res) {
             dashboard: userDash,
             prevMonth: prevMonthEntries,
             prevMonthIncome: prevMonthEntriesIncome,
-            prevMonthSummary: [prevMonthTotalExpense, prevMonthTotalIncome, prevMonthTotalSavings],
+            prevMonthSummary: [prevMonthTotalExpense.toFixed(2), prevMonthTotalIncome.toFixed(2), prevMonthTotalSavings],
 
             change: perChangeSpending,
             changeIncome: perChangeIncome,
             currentMonth: currentMonthEntries,
             currentMonthIncome: currentMonthEntriesIncome,
-            currentMonthSummary: [currentMonthTotalExpense, currentMonthTotalIncome, currentMonthTotalSavings]
+            currentMonthSummary: [currentMonthTotalExpense.toFixed(2), currentMonthTotalIncome.toFixed(2), currentMonthTotalSavings]
           });
         }
       );
