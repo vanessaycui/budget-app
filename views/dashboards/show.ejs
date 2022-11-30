@@ -3,7 +3,8 @@
 <h1><%= dashboard.title %> </h1> 
 <button id="settings-dash">settings</button>
 
-<div class="form-overlay" >
+<!-- overlay for editing dashboard -->
+<div class="form-overlay" style="display:none" >
   <form action="/dashboards/<%=dashboard.id%>?_method=PUT" method="POST">
     <label>Edit Dashboard Name:</label>
     <input type="text" name="title" value=<%=dashboard.title%>>

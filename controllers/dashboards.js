@@ -28,9 +28,7 @@ function show(req, res) {
   const date = new Date();
   const nextMonthDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
   const currentMonthDate = new Date(date.getFullYear(), date.getMonth(), 0);
-  console.log(currentMonthDate)
   const prevMonthDate = new Date(date.getFullYear(), date.getMonth() - 1, 0);
-  console.log(prevMonthDate)
 
   Dashboard.findById(req.params.id).exec(function (err, userDash) {
       let categories = userDash.categories;
@@ -54,8 +52,6 @@ function show(req, res) {
                   category: category,
                   date: { $gte: prevMonthDate, $lt: currentMonthDate },
                 }).then(function (result) {
-                  console.log(category)
-        
                   if (result.length === 0) {
                     catTotal.push(0);
                   } else {
@@ -236,7 +232,6 @@ function deleteDashboard(req, res) {
   })
 }
 function update(req, res) {
-
   Dashboard.findById(req.params.id).exec(function(err, dashboard){
     dashboard.title = req.body.title
     dashboard.save(function(err){

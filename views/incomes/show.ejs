@@ -1,5 +1,8 @@
 <%- include("../partials/header.ejs")%>
 <h1> Historical entries for <%=income.incomeType%>:</h1>
+<form action="/dashboards/<%=dashboard.id%>/incomes/<%=income.id%>?_method=DELETE" method="POST">
+    <button type="submit">delete income</button>
+</form>
 
 <table id="show-table">
     <thead>

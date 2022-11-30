@@ -2,7 +2,6 @@
 /*----- app's state (variables) -----*/
 
 /*----- cached element references -----*/
-
 const addCatBtn = document.querySelector("#add-cat-btn")
 const catForm = document.querySelector("#cat-form")
 const catList = document.querySelector("#cat-list")
@@ -20,8 +19,18 @@ const entryHistory = document.querySelector("#entry-history")
 const cancelBtn = document.querySelectorAll(".cancel-form")
 const cancelBtnCat = document.querySelector(".cat-btn")
 const cancelBtnIncome = document.querySelector(".income-btn")
-/*----- event listeners -----*/
 
+const cancelBtnDash = document.querySelector("#cancel-dash-edit")
+const editDashForm = document.querySelector(".form-overlay")
+const settingsBtn = document.querySelector("#settings-dash")
+
+/*----- event listeners -----*/
+settingsBtn.addEventListener('click',(event)=>{
+    editDashForm.style.display="flex"
+})
+cancelBtnDash.addEventListener('click',(event)=>{
+    editDashForm.style.display="none"
+})
 cancelBtn.forEach(btn =>{
     btn.addEventListener('click',(event)=>{
         categoryEntryForm.style.display= "none";

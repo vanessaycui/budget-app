@@ -1,28 +1,40 @@
 <%- include("../partials/header.ejs")%>
     <h1> Historical entries for <%=category.name%> category:</h1>
+    <form action="/dashboards/<%=dashboard.id%>/categories/<%=category.id%>?_method=DELETE" method="POST">
+        <button type="submit">delete category</button>
+    </form>
+    <div class="show-entries">
+        <table id="show-table">
+            <thead>
+                <td>Date</td>
+                <td>Company</td>
+                <td>Cost</td>
+                <td>Person</td>
+                <td>Comments</td>
+            </thead>
+            <%results.forEach(entry=>{%>
+                <tr>
+                    <td><p><%=entry.date.toISOString().slice(0,10)%></p></td>
+                    <td><p><%=entry.company%></p></td>
+                    <td><p>$<%=entry.cost.toFixed(2)%></p></td>
+                    <td><p><%=entry.person%></p></td>
+                    <td><p><%=entry.comment%></p></td>
+                    <td>
+                        edit
+                    </td>
+                    <td>
+                        <form action="/entries/<%=entry.id%>/categories/<%=category.id%>?_method=DELETE" method="POST">
+                            <button type="submit">delete</button>
+                        </form>
+                    </td>
+                </tr>
+                
+            <%})%>
+        </table>
+        <div id="entry-edit-form">
 
-    <table id="show-table">
-        <thead>
-            <td>Date</td>
-            <td>Company</td>
-            <td>Cost</td>
-            <td>Person</td>
-            <td>Comments</td>
-        </thead>
-        <%results.forEach(entry=>{%>
-            <tr>
-                <td><p><%=entry.date.toISOString().slice(0,10)%></p></td>
-                <td><p><%=entry.company%></p></td>
-                <td><p>$<%=entry.cost.toFixed(2)%></p></td>
-                <td><p><%=entry.person%></p></td>
-                <td><p><%=entry.comment%></p></td>
-                <td><a>edit</a></td>
-                <td><a>delete</a></td>
-            </tr>
-            
-        <%})%>
-
-    </table>
+        </div>
+    </div>
     
 
 

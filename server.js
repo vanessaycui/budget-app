@@ -43,8 +43,8 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use('/', indexRouter);
-app.use('/', categoriesRouter)
 app.use('/', entriesRouter)
+app.use('/', categoriesRouter)
 app.use('/dashboards', dashboardsRouter);
 
 
