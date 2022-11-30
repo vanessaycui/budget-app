@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 var entrySchema = new Schema({
   category: String,
-  comapny: String,
+  company: String,
   categoryType: String,
   date: Date,
   cost: {

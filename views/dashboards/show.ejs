@@ -60,11 +60,16 @@
         </div>
 
         <div id="prev-month-list" class="data-col">
-            <% for (let entry of prevMonth ){ %>
-                <p> <%=entry%></p>
+            <div>
+            <% for (let categoryTotal of prevMonth ){ %>
+                <p> <%=categoryTotal%></p>
             <%}%>
-
-            
+        </div>
+            <div>
+            <% for (let incomeTotal of prevMonthIncome ){ %>
+                <p> <%=incomeTotal%></p>
+            <%}%>
+        </div>
 
         </div>
         <div id="month-overall-list" class="data-col">
@@ -72,6 +77,16 @@
 
         </div>
         <div id="current-month-list" class="data-col">
+            <div>
+            <% for (let categoryTotal of currentMonth ){ %>
+                <p> <%=categoryTotal%></p>
+            <%}%>
+            </div>
+            <div>
+            <% for (let incomeTotal of currentMonthIncome ){ %>
+                <p> <%=incomeTotal%></p>
+            <%}%>
+            </div>
             
         </div>
 
