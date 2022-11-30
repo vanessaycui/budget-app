@@ -6,8 +6,7 @@ module.exports = {
 
 
 function createCategory(req, res){
-    console.log(req.body)
-
+    console.log("added to categories")
     Dashboard.findById(req.params.id, function(err, dashboard){
         dashboard.categories.push(req.body)
         dashboard.save(function(err){

@@ -2,8 +2,11 @@
   --column-data-color: pink;
   --column-data-income: green;
   --column-curr-add-btn: purple;
-  --column-curr-add-btn-bg: white;
+  --column-curr-add-btn-bg: whitesmoke;
+  --column-curr-add-btn-bg-hover: grey;
 }
+
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -15,31 +18,6 @@ a {
 
 .hide-form{
   display: none;
-}
-
-#data-row{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 10px auto;
-}
-
-#data-head{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 10px auto;
-}
-
-#data-footer{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 10px auto;
-  font-size: 10px;
 }
 
 .data-footer{
@@ -82,25 +60,61 @@ a {
   margin: 0 10px;
 }
 
-.data-col{
+.data-col-cat{
   margin: 0 1%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: stretch;
   text-align: center;
-  min-height: 50px;
-  height: max-content;
+  min-height: 220px;
+  height: 100%;
   min-width: 150px;
   background-color: var(--column-data-color);
   border-radius: 10px;
-  overflow: auto;
+  flex: auto;
+}
+
+.data-col-income{
+  margin: 0 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  text-align: center;
+  min-height: 100px;
+  height: 100%;
+  min-width: 150px;
+  background-color: var(--column-data-color);
+  border-radius: 10px;
+  flex: auto;
+}
+
+
+.form-row>div>form>input{
+  margin-left: 5px;
+  width: 100px;
+  height: 10px;
+}
+
+.form-row>div>form>button{
+  width: 30px;
+  height: 17px;
+  font-size: 10px;
+  margin: 0;
+}
+.form-row>button{
+  width: 30px;
+  height: 17px;
+  font-size: 10px;
+  margin: 0;
 }
 
 #income-list{
   color: var(--column-data-income)
 }
 
-#curr-add-btn{
+.curr-add-btn{
   text-decoration: none;
   color: var(--column-curr-add-btn);
   background-color: var(--column-curr-add-btn-bg);
@@ -108,28 +122,24 @@ a {
   margin: 0 0 0 10px;
   border-radius: 5px;
   border: 1px solid var(--column-curr-add-btn);
+  
+}
+.curr-add-btn:hover{
+  cursor: pointer;
+  background-color: var(--column-curr-add-btn-bg-hover);
 }
 
-#income-form>form{
+.entry-forms{
   display: flex;
-  margin: 0 0 5px 0;
-  justify-content: center;
-
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 220px;
 }
 
-#income-form>form>input{
-  display: flex;
-  width: 75px;
+.entry-forms>.cancel-form{
+  width: 45px;
+  margin-left: 2px;
 }
 
-#cat-form>form{
-  display: flex;
-  justify-content: center;
-  margin: 0;
 
-}
-
-#cat-form>form>input{
-  display: flex;
-  width: 75px;
-}

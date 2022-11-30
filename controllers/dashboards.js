@@ -49,7 +49,7 @@ function show(req, res) {
                 //find entries associated with each category and exists in userDash
                 const entry = await Entry.find({
                   _id: { $in: userDash.entries },
-                  categoryType: category,
+                  category: category,
                   date: { $gt: prevMonthDate, $lt: currentMonthDate },
                 }).then(function (result) {
                   if (result.length === 0) {
@@ -160,9 +160,15 @@ function show(req, res) {
           },
         ],
         function (err) {
-          //calculate totals
-          //calculate net savings
-          //reduce functions
+          
+          let prevMonthTotalIncome = prevMonthEntriesIncome.reduce((acc, curr) => acc+curr, 0);
+          let prevMonthTotalExpense = prevMonthEntries.reduce((acc, curr) => acc+curr, 0);
+          let prevMonthTotalSavings = prevMonthTotalIncome - prevMonthTotalExpense
+
+          let currentMonthTotalIncome = currentMonthEntriesIncome.reduce((acc, curr) => acc+curr, 0);
+          let currentMonthTotalExpense = currentMonthEntries.reduce((acc, curr) => acc+curr, 0);
+          let currentMonthTotalSavings = currentMonthTotalIncome - currentMonthTotalExpense
+    
 
           //calculating the percent changes btwn categories and income
           let perChangeSpending = [];
@@ -193,10 +199,13 @@ function show(req, res) {
             dashboard: userDash,
             prevMonth: prevMonthEntries,
             prevMonthIncome: prevMonthEntriesIncome,
+            prevMonthSummary: [prevMonthTotalExpense, prevMonthTotalIncome, prevMonthTotalSavings],
+
             change: perChangeSpending,
             changeIncome: perChangeIncome,
             currentMonth: currentMonthEntries,
             currentMonthIncome: currentMonthEntriesIncome,
+            currentMonthSummary: [currentMonthTotalExpense, currentMonthTotalIncome, currentMonthTotalSavings]
           });
         }
       );

@@ -21,7 +21,7 @@ var indexRouter = require('./routes/index');
 var dashboardsRouter = require('./routes/dashboards');
 var categoriesRouter = require('./routes/categories');
 var incomesRouter = require('./routes/incomes')
-
+var entriesRouter = require('./routes/entries')
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -43,9 +43,13 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use('/', indexRouter);
-app.use('/dashboards', dashboardsRouter);
 app.use('/', categoriesRouter)
+app.use('/', entriesRouter)
+app.use('/dashboards', dashboardsRouter);
+
+
 app.use('/', incomesRouter)
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

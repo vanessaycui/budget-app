@@ -4,7 +4,6 @@ const Schema = mongoose.Schema;
 var entrySchema = new Schema({
   category: String,
   company: String,
-  categoryType: String,
   date: Date,
   cost: {
     type: Number,
