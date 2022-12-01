@@ -1,6 +1,6 @@
 :root{
   --all-background-color: whitesmoke;
-  --navbar-bg-color: rgba(255,255,255,0);
+  --navbar-bg-color: rgba(255,255,255,0.5);
   --navbar-font-color: black;
   --navbar-font-color-hover: black;
   --login-card-bg: whitesmoke;
@@ -80,8 +80,8 @@ nav .brand-logo {
 #dashboard-show-header{
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 150px;
+  align-items: flex-end;
+  height: 130px;
 }
 
 #dashboard-show-header > h1{
@@ -183,7 +183,7 @@ tr {
 }
 
 #dashboard-show-table table{
-  width: 700px;
+  width: 900px;
   font-size: 1rem;
 }
 .data-income{
@@ -255,6 +255,8 @@ tr {
 #cat-list>a:hover{
   color: var(--column-cat-text-color-hover);
   cursor: pointer;
+  font-size: 1.1em;
+  transition: 0.3s;
 }
 
 #income-list>a{
@@ -263,11 +265,14 @@ tr {
   margin: 14px 15px;
   text-decoration: none;
   color: var(--column-income-text-color);
+  transition: 0.3s;
 }
 
 #income-list>a:hover{
   color: var(--column-income-text-color-hover);
   cursor: pointer;
+  font-size: 1.1em;
+  transition: 0.3s;
 }
 
 .data-col-income{
@@ -298,6 +303,10 @@ tr {
   line-height: 18px;
   font-size: 13px;
   margin-left: 10px
+}
+.btn-small:hover {
+  background-color:var(--column-cat-text-color-hover);
+  transition: 0.1s;
 }
 /* ----------styling entry forms -------------- */
 .entry-forms form{
@@ -355,7 +364,7 @@ tr {
   width: 230px;
   background-color: var(--column-data-color);
   padding: 10px;
-  border-radius:5px;
+  border-radius:10px;
 }
 #entry-history p,h5{
   margin: 0;
@@ -569,7 +578,6 @@ tr {
   transition: 0.3s;
 }
 
-
 #dashboard-creation button:hover{
   color: var(--dashboard-card-bg);
   background-color:var(--dashboard-card-font);
@@ -578,10 +586,112 @@ tr {
   border: none;
   cursor: pointer;
   transition: 0.3s;
-
 }
 
 
+/*  ---- categories show page------- */
+.entry-show-page{
+  margin: 0 5%;
+}
 
+.show-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  margin-top: 10px;
+}
 
+.show-header > h1{
+  margin: 0;
+}
+.show-header button{
+  padding: 10px;
+  background-color: var(--dashboard-card-bg);
+  color:var(--dashboard-card-font);
+  border-radius: 5px;
+  border: none;
+  transition: 0.3s;
+  margin: 0 40px;
+}
 
+.show-header button:hover{
+  padding: 15px 10px;
+  color: var(--dashboard-card-bg);
+  background-color:var(--dashboard-card-font);
+  border-radius: 5px;
+  border: none;
+  transition: 0.3s;
+  margin: 0 40px;
+}
+
+#cat-settings-form .cancel-edit{
+  padding: 10px;
+  color: var(--dashboard-card-bg);
+  background-color:var(--dashboard-card-font);
+  border-radius: 5px;
+  border: none;
+  transition: 0.3s;
+  margin: 0 40px;
+}
+
+#cat-settings-form .cancel-edit:hover{
+  background-color: var(--dashboard-card-bg);
+  color:var(--dashboard-card-font);
+  border-radius: 5px;
+  padding: 15px;
+  cursor: pointer;
+}
+
+#cat-settings-form label{
+  color: black;
+  font-size: 20px;
+  font-weight:600;
+}
+/*  ---- incomes show page------- */
+
+#income-settings-form .cancel-edit{
+  padding: 10px;
+  color: var(--dashboard-card-bg);
+  background-color:var(--dashboard-card-font);
+  border-radius: 5px;
+  border: none;
+  transition: 0.3s;
+  margin: 0 40px;
+}
+
+#income-settings-form .cancel-edit:hover{
+  background-color: var(--dashboard-card-bg);
+  color:var(--dashboard-card-font);
+  border-radius: 5px;
+  padding: 15px;
+  cursor: pointer;
+}
+
+#income-settings-form label{
+  color: black;
+  font-size: 20px;
+  font-weight:600;
+}
+
+.edit-btn{
+  background-color: var(--dashboard-card-bg);
+  color:var(--dashboard-card-font);
+  padding: 10px;
+  border-radius: 5px;
+  transition: 0.3s;
+
+}
+.edit-btn:hover{
+  color: var(--dashboard-card-bg);
+  background-color:var(--dashboard-card-font);
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor:pointer;
+  transition: 0.3s;
+}
+
+.show-table > thead{
+  font-size: 1.5rem;
+  font-weight:500;
+}
