@@ -4,7 +4,7 @@
         <button id="settings-category">settings</button>
     </div>
     <!-- overlay for editing categories -->
-    <div class="form-overlay" style="display:none" >
+    <div id="cat-settings-form" class="form-overlay" style="display:none" >
         <form action="/dashboards/<%=dashboard.id%>/categories/<%=category.id%>?_method=PUT" method="POST">
             <label>Edit Category Name:</label>
             <input type="text" name="name" value=<%=category.name%>>
@@ -13,8 +13,9 @@
         <form action="/dashboards/<%=dashboard.id%>/categories/<%=category.id%>?_method=DELETE" method="POST">
             <button type="submit">delete category</button>
         </form>
-        <button id="cancel-dash-edit">cancel</button>
+        <button class="cancel-edit">cancel</button>
     </div>
+
 
     <div class="show-entries">
         <table id="show-table">
@@ -25,6 +26,7 @@
                 <td>Person</td>
                 <td>Comments</td>
             </thead>
+            <%let today = new Date()%>
             <%results.forEach(entry=>{%>
                 <tr>
                     <td><p><%=entry.date.toISOString().slice(0,10)%></p></td>
@@ -33,13 +35,48 @@
                     <td><p><%=entry.person%></p></td>
                     <td><p><%=entry.comment%></p></td>
                     <td>
-                        edit
-                    </td>
-                    <td>
                         <form action="/entries/<%=entry.id%>/categories/<%=category.id%>?_method=DELETE" method="POST">
                             <button type="submit">delete</button>
                         </form>
                     </td>
+                    <td>
+                        <a id="<%=entry.id%>">edit</a>
+
+                        <div id="form-<%=entry.id%>" style="display:none" >
+                            <form action="/entries/<%=entry.id%>/categories/<%=category.id%>?_method=PUT" method="POST">
+                                <table>
+                                    <tr>
+                                      <td><label for="company">Company:</label></td>
+                                      <td><input type="text" name="company" value=<%=entry.company%>></td>
+                                    </tr>
+                                    <tr>
+                                      <td><label for="date">Date:</label></td>
+                                      <td><input type="date" name="date" value=<%=today.toISOString().slice(0,10)%>></td>
+                                    </tr>
+                                    <tr>
+                                      <td><label for="cost" required>Amount:</label></td>
+                                      <td><input type="text" name="cost" value=<%=entry.cost%>></td>
+                                    </tr>
+                                    <tr>
+                                      <td><label for="comment">Comments:</label></td>
+                                      <td> <input type="text" name="comment" value=<%=entry.comment%>></td>
+                                    </tr>
+                                    <tr>
+                                      <td><label for="person">Member:</label></td>
+                                      <td><input type="text" name="person" value=<%=entry.comment%>></td>
+                                    </tr>
+                                    <tr>
+                                     
+                                      <td><button type="submit">done</button></td>
+                          
+                                    </tr>
+                                  </table>
+                             
+                            </form>
+                            <button class="cancel-edit">cancel</button>
+                        </div>
+                    </td>
+                    
                 </tr>
                 
             <%})%>
@@ -50,5 +87,5 @@
     </div>
     
 
-    <script src="/javascripts/category.js"></script
+    <script src="/javascripts/category.js"></script>
 <%- include("../partials/footer.ejs")%>

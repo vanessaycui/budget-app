@@ -2,7 +2,8 @@ const Entry = require('../models/entry')
 module.exports = {
   create: createEntry,
   deleteCat: deleteCategoryEntry,
-  deleteIncome: deleteIncomeEntry
+  deleteIncome: deleteIncomeEntry,
+  updateCat: updateCategoryEntry
 
 };
 
@@ -17,8 +18,6 @@ function createEntry(req, res){
 }
 
 function deleteCategoryEntry(req,res){
- 
-
   Entry.findById(req.params.eId).exec(function(err, entry){
     entry.remove()
     entry.save(function(err){
@@ -27,9 +26,24 @@ function deleteCategoryEntry(req,res){
   })
 }
 
+function updateCategoryEntry(req,res){
+  console.log(req.body)
+  Entry.findById(req.params.eId).exec(function(err, entry){
+    console.log(entry)
+
+    entry.company =req.body.company
+    entry.date = new Date(req.body.date)
+    entry.cost = req.body.cost
+    entry.comment = req.body.comment
+    entry.person = req.body.person
+    entry.save(function(err){
+      res.redirect(`/dashboards/${entry.dashboard}/categories/${req.params.cId}`)
+    })
+  })
+
+}
+
 function deleteIncomeEntry(req,res){
-
-
   Entry.findById(req.params.eId).exec(function(err, entry){
     entry.remove()
     entry.save(function(err){

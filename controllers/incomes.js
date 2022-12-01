@@ -4,7 +4,8 @@ const Entry = require('../models/entry')
 module.exports = {
     show,
     create: createIncome,
-    delete: deleteIncome
+    delete: deleteIncome,
+    update
 };
 
 function show(req, res){
@@ -37,11 +38,32 @@ function deleteIncome(req, res){
     Dashboard.findById(req.params.dId, function(err, dashboard){
         dashboard.incomes.forEach(income=>{
             if (income.id === req.params.iId){
-                income.remove()
+                Entry.deleteMany({incomeType: income.incomeType, dashboard: dashboard.id}).exec(function(err){
+                    income.remove()
+                    dashboard.save(function(err){
+                        res.redirect(`/dashboards/${req.params.dId}`)
+                    }) 
+                })
+                
             }
         })
-        dashboard.save(function(err){
-            res.redirect(`/dashboards/${req.params.dId}`)
+        
+    })
+}
+//makeedits
+function update(req, res){
+    Dashboard.findById(req.params.dId, function(err, dashboard){
+        dashboard.incomes.forEach(income=>{
+            if (income.id === req.params.iId){
+                Entry.updateMany({incomeType: income.incomeType, dashboard: dashboard.id}, {$set: {incomeType: req.body.incomeType}}).exec(function(err){
+                    income.incomeType = req.body.incomeType
+                    dashboard.save(function(err){
+                        res.redirect(`/dashboards/${req.params.dId}/incomes/${req.params.iId}`)
+                    }) 
+                })
+                
+            }
         })
+        
     })
 }

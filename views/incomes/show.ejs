@@ -1,8 +1,22 @@
 <%- include("../partials/header.ejs")%>
+<div class="show-header">
 <h1> Historical entries for <%=income.incomeType%>:</h1>
-<form action="/dashboards/<%=dashboard.id%>/incomes/<%=income.id%>?_method=DELETE" method="POST">
-    <button type="submit">delete income</button>
-</form>
+<button id="settings-income">settings</button>
+
+</div>
+<!-- overlay for editing income -->
+<div class="form-overlay" style="display:none" >
+    <form action="/dashboards/<%=dashboard.id%>/incomes/<%=income.id%>?_method=PUT" method="POST">
+        <label>Edit Income Name:</label>
+        <input type="text" name="incomeType" value=<%=income.incomeType%>>
+        <button type="submit">Edit</button>
+    </form>
+    <form action="/dashboards/<%=dashboard.id%>/incomes/<%=income.id%>?_method=DELETE" method="POST">
+        <button type="submit">delete income</button>
+    </form>
+    <button id="cancel-edit">cancel</button>
+</div>
+
 
 <table id="show-table">
     <thead>
@@ -30,4 +44,5 @@
     <%})%>
 
 </table>
+<script src="/javascripts/income.js"></script>
 <%- include("../partials/footer.ejs")%>
