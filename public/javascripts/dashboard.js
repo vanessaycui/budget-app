@@ -34,11 +34,13 @@ const prevMonthData = document.getElementById('prev-data').innerHTML.split(",").
 
 /*----- app's state (variables) -----*/
 new Chart(dashboardChart, {
+    
     type: 'bar',
+ 
     data: {
+    
       labels: xaxis,
       datasets: [
-   
     {
         label: 'prev. month spending',
         data: prevMonthData,
@@ -66,7 +68,6 @@ new Chart(dashboardChart, {
       }
     }
   });
-
 
 /*----- event listeners -----*/
 settingsBtn.addEventListener('click',(event)=>{

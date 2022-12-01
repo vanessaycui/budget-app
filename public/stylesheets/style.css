@@ -5,18 +5,20 @@
   --navbar-font-color-hover: black;
   --login-card-bg: black;
 
-  --dashboard-card-bg: black;
+  --entry-history-color: black;
+  --dashboard-card-bg: rgb(97, 90, 90);
   --dashboard-card-font: aquamarine;
 
-  --column-data-color: pink;
+  --column-data-color: rgb(97, 90, 90);
   --column-data-income: green;
+  --table-font-color: aquamarine;
   --column-curr-add-btn: purple;
   --column-curr-add-btn-bg: whitesmoke;
-  --column-curr-add-btn-bg-hover: grey;
-  --column-cat-text-color: black;
-  --column-cat-text-color-hover: grey;
-  --column-income-text-color: green;
-  --column-income-text-color-hover: grey;
+  --column-curr-add-btn-bg-hover: pink;
+  --column-cat-text-color: aquamarine;
+  --column-cat-text-color-hover: pink;
+  --column-income-text-color: aquamarine;
+  --column-income-text-color-hover: pink;
   --dash-edit-delete-form-overlay-bg: rgba(255,255,255,0.9);
 }
 
@@ -177,12 +179,16 @@ tr {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: var(--table-font-color)
 }
 
 #dashboard-show-table table{
   width: 700px;
+  font-size: 0.85rem;
 }
-
+.data-income{
+  height: 200px;
+}
 .data-footer{
   margin: 0 1%;
   display: flex;
@@ -193,6 +199,7 @@ tr {
   background-color: var(--column-data-color);
   border-radius: 10px;
   padding: 5px 0 0 0;
+  font-size: 1rem;
 }
 
 .data-footer >div> p{
@@ -208,7 +215,7 @@ tr {
   align-items: center;
   height: 40px;
   min-width: 150px;
-  font-size: 12px;
+  font-size: 1rem;
   background-color: var(--column-data-color);
   border-radius: 10px;
   padding: 10px 0 0 0;
@@ -244,6 +251,7 @@ tr {
   text-decoration: none;
   color: var(--column-cat-text-color);
 }
+
 #cat-list>a:hover{
   color: var(--column-cat-text-color-hover);
   cursor: pointer;
@@ -256,11 +264,11 @@ tr {
   text-decoration: none;
   color: var(--column-income-text-color);
 }
+
 #income-list>a:hover{
   color: var(--column-income-text-color-hover);
   cursor: pointer;
 }
-
 
 .data-col-income{
   margin: 0 1%;
@@ -269,16 +277,13 @@ tr {
   justify-content: flex-start;
   align-items: stretch;
   text-align: center;
-  min-height: 100px;
+  min-height: 150px;
   height: 100%;
   min-width: 150px;
   background-color: var(--column-data-color);
   border-radius: 10px;
   flex: auto;
 }
-
-
-
 
 #income-list{
   color: var(--column-data-income)
@@ -294,56 +299,55 @@ tr {
   font-size: 13px;
   margin-left: 10px
 }
-
-
-.entry-forms{
+/* ----------styling entry forms -------------- */
+.entry-forms form{
   display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 190px;
+  gap: 5px;
+
+}
+.entry-forms{
+  display:flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  height: 220px;
 }
-
-.entry-forms>.cancel-form{
-  width: 45px;
-  margin-left: 2px;
+.entry-forms label{
+  font-size: 1rem;
 }
-
-
-#show-table{
-  display: block;
-  margin: 0 auto;
-  text-align: left;
-
-
-}
-#show-table>tbody>tr>td{
-  min-width: 120px;
-  
-}
-#show-table>thead>td{
-  min-width: 120px;
-  
-}
-#show-table>thead{
-  font-size: 20px;
-
-}
-
-.show-header{
-  display: flex;
-  
+.entry-forms input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #9e9e9e;
+  border-radius: 0;
+  outline: none;
+  height: 1.4rem;
+  width: 100%;
+  font-size: 13px;
+  margin: 0;
+  padding: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-transition: border .3s, -webkit-box-shadow .3s;
+  transition: border .3s, -webkit-box-shadow .3s;
+  transition: box-shadow .3s, border .3s;
+  transition: box-shadow .3s, border .3s, -webkit-box-shadow .3s;
 }
 
 #dash-chart-container{
   width: 600px;
   height: 300px;
-  margin: 0 auto;
+  margin: 0 auto 10px auto;
 }
 
 #entry-history>div{
   display: flex;
   flex-direction: column;
+  color: var(--entry-history-color);
 }
 
 

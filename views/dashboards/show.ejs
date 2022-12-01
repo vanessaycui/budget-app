@@ -88,7 +88,16 @@
     </thead>
     <!-- MAIN TABLE -->
     <tr>
-      <td></td>
+      <td class="form-row">
+        <div id="cat-form" style="display:none">
+          <form action="/dashboards/<%=dashboard.id%>/categories" method="POST">
+            <label for="name">Add New Category:</label>
+            <input type="text" name="name">
+            <button type="submit">ok</button>   
+          </form>
+          <button class="cancel-form cat-btn" >x</button>
+        </div>
+      </td>
       <td>
         <div class="data-col-cat">
           <div id="cat-list">
@@ -132,102 +141,65 @@
         <%let today = new Date(date.getFullYear(), date.getMonth(), date.getDate())%>
         <div id="entry-form-categories" style="display:none" class="entry-forms">
           <form action="/dashboards/<%=dashboard.id%>/entries" method="POST">
-            <table>
-              <tr>
-                <td><label for="category">Category:</td>
-                <td><input type="text" name="category" required></td>
-              </tr>
-              <tr>
-                <td><label for="company">Company:</label></td>
-                <td><input type="text" name="company"></td>
-              </tr>
-              <tr>
-                <td><label for="date">Date:</label></td>
-                <td><input type="date" name="date" value=<%=today.toISOString().slice(0,10)%>></td>
-              </tr>
-              <tr>
-                <td><label for="cost" required>Amount:</label></td>
-                <td><input type="text" name="cost"></td>
-              </tr>
-              <tr>
-                <td><label for="comment">Comments:</label></td>
-                <td> <input type="text" name="comment"></td>
-              </tr>
-              <tr>
-                <td><label for="person">Member:</label></td>
-                <td><input type="text" name="person"></td>
-              </tr>
-              <tr>
-              
-                <td><button type="submit">done</button></td>
-
-              </tr>
-            </table>
-          
+            <section>
+              <label for="category">Category:</label>
+              <label for="company">Company:</label>
+              <label for="date">Date:</label>
+              <label for="cost" required>Amount:</label>
+              <label for="comment">Comments:</label>
+              <label for="person">Member:</label>
+            </section>
+            <Section>
+              <input type="text" name="category" required>
+              <input type="text" name="company">
+              <input type="date" name="date" value=<%=today.toISOString().slice(0,10)%>>
+              <input type="text" name="cost">
+              <input type="text" name="comment">
+              <input type="text" name="person">
+              <button type="submit">done</button>  
+            </Section>  
           </form>
           <button class="cancel-form">x</button>
-          
         </div>
         <div id="entry-form-income" style="display:none" class="entry-forms">
           <form action="/dashboards/<%=dashboard.id%>/entries" method="POST">
-            <table>
-              <tr>
-                <td><label for="category">Income:</td>
-                <td><input type="text" name="incomeType" required></td>
-              </tr>
-              <tr>
-                <td><label for="company">Company:</label></td>
-                <td><input type="text" name="company"></td>
-              </tr>
-              <tr>
-                <td><label for="date">Date:</label></td>
-                <td><input type="date" name="date" value=<%=today.toISOString().slice(0,10)%>></td>
-              </tr>
-              <tr>
-                <td><label for="cost" required>Amount:</label></td>
-                <td><input type="text" name="income"></td>
-              </tr>
-              <tr>
-                <td><label for="comment">Comments:</label></td>
-                <td> <input type="text" name="comment"></td>
-              </tr>
-              <tr>
-                <td><label for="person">Member:</label></td>
-                <td><input type="text" name="person"></td>
-              </tr>
-              <tr>
-                <td><button type="submit">done</button></td>
-              
-                
-
-              </tr>
-
-            </table>
+            <section>
+              <label for="category">Income:</label>
+              <label for="company">Company:</label>
+              <label for="date">Date:</label>
+              <label for="cost" required>Amount:</label>
+              <label for="comment">Comments:</label>
+              <label for="person">Member:</label>
+            </section>
+            <section>
+              <input type="text" name="incomeType" required>
+              <input type="text" name="company">
+              <input type="date" name="date" value=<%=today.toISOString().slice(0,10)%>>
+              <input type="text" name="income">
+              <input type="text" name="comment">
+              <input type="text" name="person">
+              <button type="submit">done</button>
+            </section>
             </form>
             <button class="cancel-form">x</button>
-            
-        
-        </div>
+        </div> 
       </td>
-      
     </tr>
-    <!-- <tr>
-      <td></td>
+    <tr>
       <td class="form-row">
-        <div   id="cat-form" style="display: none" >
-          <form action="/dashboards/<%=dashboard.id%>/categories" method="POST">
-            <input type="text" name="name" />
-            <button type="submit">ok</button>   
+        <div id="income-form" style="display: none">
+          <form action="/dashboards/<%=dashboard.id%>/incomes" method="POST">
+            <label for="incomeType">Add New Income Source:</label>
+            <input type="text" name="incomeType" />
+            <button type="submit">ok</button>
+              
           </form>
-
+          <button class="cancel-form income-btn" style="display:none">x</button>
+      
         </div>
       </td>
-      <td class="form-row">
-        <button class="cancel-form cat-btn" style="display:none">x</button>
-      </td>
-    </tr> -->
-    <tr>
-      <td></td>
+   
+      
       <td>
         <div class="data-col-income">
           <div id="income-list" >
@@ -288,28 +260,12 @@
         </div>
       </td>
     </tr>
-    <!-- <tr >
-      <td></td>
-      <td class="form-row">
-        <div id="income-form" style="display: none">
-          <form action="/dashboards/<%=dashboard.id%>/incomes" method="POST">
-            <input type="text" name="incomeType" />
-            <button type="submit">ok</button>
-              
-          </form>
-      
-        </div>
-      </td>
-      <td class="form-row">
-        <button class="cancel-form income-btn" style="display:none">x</button>
-      </td>
-    </tr> -->
     <!-- TABLE SUMMARY  -->
     <tr>
       <td></td>
       <td>
         <div class="data-footer">
-          <p>Income<a id="add-income-btn" class="curr-add-btn btn-floating btn-small waves-light">+</a></p>
+          <p>Income Source<a id="add-income-btn" class="curr-add-btn btn-floating btn-small waves-light">+</a></p>
         </div>
       </td>
       <td>
