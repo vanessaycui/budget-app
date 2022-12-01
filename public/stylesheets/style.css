@@ -202,3 +202,8 @@ body>table{
   min-width: 800px;
   margin: 0 auto;
 }
+
+#entry-history>div{
+  display: flex;
+  flex-direction: column;
+}

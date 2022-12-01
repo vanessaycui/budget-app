@@ -13,7 +13,7 @@ function show(req, res){
     Dashboard.findById(req.params.dId).exec(function(err, dashboard){
         dashboard.incomes.forEach(income =>{
             if (income.id === req.params.iId){
-                Entry.find({dashboard: req.params.dId, incomeType: income.incomeType}).exec(function(err,results){
+                Entry.find({dashboard: req.params.dId, incomeType: income.incomeType}).sort({date: -1}).exec(function(err,results){
                 
                     console.log(results)
                     res.render('./incomes/show', {dashboard: dashboard, income: income, results: results})

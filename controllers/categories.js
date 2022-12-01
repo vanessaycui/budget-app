@@ -13,7 +13,7 @@ function show(req, res){
     Dashboard.findById(req.params.dId).exec(function(err, dashboard){
         dashboard.categories.forEach(category=>{
             if (category.id === req.params.cId){
-                Entry.find({category: category.name, dashboard: req.params.dId}).exec(function(err, results){
+                Entry.find({category: category.name, dashboard: req.params.dId}).sort({date: -1}).exec(function(err, results){
                     console.log(results)
                     res.render('./categories/show', {dashboard: dashboard, category: category, results: results})
 

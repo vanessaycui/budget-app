@@ -256,8 +256,10 @@
     <td>
       <div id="entry-history">
         <!-- optional -->
+        
         <% for (let category in recentEntries){%>
           <div id="history-<%=category.split(" ")[0]%>" style="display: none">
+            <p>Previous Entries:</p>
             <% if (recentEntries[category].length <5){%>
               <%for (let record of recentEntries[category]){%>
                 <p><%=record%></p>

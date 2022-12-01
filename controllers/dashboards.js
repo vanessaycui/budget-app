@@ -173,7 +173,7 @@ function show(req, res) {
                   category: category,
                 }).sort({date:-1}).then(function (result) {
                   if (result.length === 0) {
-                    entries[category] = "No records"
+                    entries[category] = ["No records"]
                   } else {
                     entries[category]=[]
 
@@ -201,7 +201,7 @@ function show(req, res) {
                     incomeType: income,
                   }).sort({date:-1}).then(function (result) {
                     if (result.length === 0) {
-                      entries[income] = "No records"
+                      entries[income] =  ["No records"]
                     } else {
                       entries[income]=[]
   
