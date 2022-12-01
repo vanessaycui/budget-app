@@ -38,7 +38,7 @@
   <thead>
   <td>
   <div class="data-head">
-    <p>Categories <a id="add-cat-btn"  class="curr-add-btn">+</a></p>
+    <p>Categories <a id="add-cat-btn"  class="curr-add-btn btn-floating btn-small waves-light" >+</a></p>
   </div>
 </td>
 <td>
@@ -97,7 +97,7 @@
       <div>
         <% for (let i=0; i<currentMonth.length; i++){ %>
           <% let categoryName = dashboard.categories[i].name %>
-          <p><%=currentMonth[i]%> <a class="curr-add-btn" id=<%=categoryName%> > + </a></p>
+          <p><%=currentMonth[i]%> <a class="curr-add-btn btn-floating btn-small waves-light" id=<%=categoryName%> > +</a></p>
 
         <%}%>
       </div>
@@ -248,16 +248,35 @@
         <div>
           <% for (let i=0; i<currentMonthIncome.length; i++){ %>
             <% let incomeName = dashboard.incomes[i].incomeType %>
-            <p><%=currentMonthIncome[i]%> <a class="curr-add-btn" id=<%=incomeName%> > + </a></p>
+            <p><%=currentMonthIncome[i]%> <a class="curr-add-btn btn-floating btn-small waves-light" id=<%=incomeName%> > + </a></p>
           <%}%>
         </div>
       </div>
     </td>
     <td>
-      <div id="entry-history" style="display:none">
+      <div id="entry-history">
         <!-- optional -->
+        <% for (let category in recentEntries){%>
+          <div id="history-<%=category.split(" ")[0]%>" style="display: none">
+            <% if (recentEntries[category].length <5){%>
+              <%for (let record of recentEntries[category]){%>
+                <p><%=record%></p>
+        
+              <%}%>
+            <%} else {%>
+              <%for (let i=0; i<5;i++){%>
+                <p><%=recentEntries[category][i]%></p>
+        
+              <%}%>
 
+            <%}%>
+          
+          </div>
+      
+        <%}%>
+      
       </div>
+      
     </td>
   </tr>
   <tr >
@@ -281,7 +300,7 @@
 <td>
 
   <div class="data-footer">
-    <p>Income<a id="add-income-btn" class="curr-add-btn">+</a></p>
+    <p>Income<a id="add-income-btn" class="curr-add-btn btn-floating btn-small waves-light">+</a></p>
   </div>
 </td>
 <td>
@@ -318,6 +337,7 @@
   </td>
 </tr>
 </table>
+
 
 <a href="/dashboards"> back to my dashboard collection</a>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

@@ -37,6 +37,8 @@ function show(req, res) {
       let prevMonthEntriesIncome = [];
       let currentMonthEntries = [];
       let currentMonthEntriesIncome = [];
+      let recentEntries = {}
+      // { category: [entries in string form: $xx.xx at company on date ]}
 
       async.series(
         [
@@ -160,9 +162,66 @@ function show(req, res) {
               cb(null, result);
             });
           },
+          function(cb){
+            const loop = async () => {
+              let entries = {};
+              for (let i = 0; i < categories.length; i++) {
+                const category = categories[i].name;
+                //find entries associated with each category and exists in userDash
+                const entry = await Entry.find({
+                  dashboard: req.params.id,
+                  category: category,
+                }).sort({date:-1}).then(function (result) {
+                  if (result.length === 0) {
+                    entries[category] = "No records"
+                  } else {
+                    entries[category]=[]
+
+                    result.forEach((entry) => {
+                      entries[category].push(`$${entry.cost.toFixed(2)} => ${entry.company} on ${entry.date.toISOString().slice(0,10)} `)
+                    });
+                  }
+                });
+              }
+              return entries
+            };
+            loop().then((result) => {
+              recentEntries = {...recentEntries, ...result};
+              cb(null, result);
+            });
+          },
+            function(cb){
+              const loop = async () => {
+                let entries = {};
+                for (let i = 0; i < incomes.length; i++) {
+                  const income = incomes[i].incomeType;
+                  //find entries associated with each category and exists in userDash
+                  const entry = await Entry.find({
+                    dashboard: req.params.id,
+                    incomeType: income,
+                  }).sort({date:-1}).then(function (result) {
+                    if (result.length === 0) {
+                      entries[income] = "No records"
+                    } else {
+                      entries[income]=[]
+  
+                      result.forEach((entry) => {
+                        entries[income].push(`$${entry.income.toFixed(2)} => ${entry.company} on ${entry.date.toISOString().slice(0,10)} `)
+                      });
+                    }
+                  });
+                }
+                return entries
+              };
+              loop().then((result) => {
+                recentEntries = {...recentEntries, ...result};
+                cb(null, result);
+              });
+            
+          }
         ],
         function (err) {
-          
+
           let prevMonthTotalIncome = prevMonthEntriesIncome.reduce((acc, curr) => acc+parseInt(curr), 0);
           let prevMonthTotalExpense = prevMonthEntries.reduce((acc, curr) => acc+parseInt(curr), 0);
           let prevMonthTotalSavings = (prevMonthTotalIncome - prevMonthTotalExpense).toFixed(2)
@@ -203,7 +262,7 @@ function show(req, res) {
             prevMonth: prevMonthEntries,
             prevMonthIncome: prevMonthEntriesIncome,
             prevMonthSummary: [prevMonthTotalExpense.toFixed(2), prevMonthTotalIncome.toFixed(2), prevMonthTotalSavings],
-
+            recentEntries: recentEntries,
             change: perChangeSpending,
             changeIncome: perChangeIncome,
             currentMonth: currentMonthEntries,

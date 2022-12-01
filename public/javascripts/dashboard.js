@@ -1,7 +1,8 @@
 
 /*----- constants -----*/
+const entryDivs = document.querySelectorAll("#entry-history>div")
 
-
+console.log(entryDivs)
 
 /*----- cached element references -----*/
 const addCatBtn = document.querySelector("#add-cat-btn")
@@ -16,7 +17,7 @@ const currentMonthListCat = document.querySelector("#current-month-list-cat")
 const currentMonthListIncome = document.querySelector("#curr-month-list-income")
 const categoryEntryForm = document.querySelector("#entry-form-categories")
 const incomeEntryForm = document.querySelector("#entry-form-income")
-const entryHistory = document.querySelector("#entry-history")
+
 
 const cancelBtn = document.querySelectorAll(".cancel-form")
 const cancelBtnCat = document.querySelector(".cat-btn")
@@ -30,7 +31,7 @@ const dashboardChart= document.getElementById('dash-chart');
 const xaxis = document.getElementById('x-axis').innerHTML.split(",");
 const currentMonthData = document.getElementById('current-data').innerHTML.split(",").map(value => parseInt(value));
 const prevMonthData = document.getElementById('prev-data').innerHTML.split(",").map(value => parseInt(value));
-console.log(prevMonthData)
+
 /*----- app's state (variables) -----*/
 new Chart(dashboardChart, {
     type: 'bar',
@@ -78,7 +79,7 @@ cancelBtn.forEach(btn =>{
     btn.addEventListener('click',(event)=>{
         categoryEntryForm.style.display= "none";
         incomeEntryForm.style.display= "none";
-        entryHistory.style.display="none"
+        entryDivs.forEach(div=>div.style.display="none")
         catForm.style.display="none"
         incomeForm.style.display="none"
         cancelBtnCat.style.display="none"
@@ -99,21 +100,26 @@ addIncomeBtn.addEventListener('click', (event)=>{
 })
 
 currentMonthListCat.addEventListener("click", (event)=>{
+    entryDivs.forEach(div=>div.style.display="none")
     if (event.target.tagName === "A"){
         console.log(event.target.id)
         categoryEntryForm.style.display= "flex";
         incomeEntryForm.style.display= "none";
         categoryEntryForm.children[0][0].value=event.target.id
-        entryHistory.style.display="flex"
+        const history = document.getElementById("history-"+event.target.id)
+        history.style.display="flex"
     }
 })
 
 currentMonthListIncome.addEventListener("click", (event)=>{
+    entryDivs.forEach(div=>div.style.display="none") 
     if (event.target.tagName === "A"){
-        categoryEntryForm.style.display= "none";
+        categoryEntryForm.style.display= "none"
+        console.log(event.target.id.split(" ")[0]);
         incomeEntryForm.style.display= "flex";
         incomeEntryForm.children[0][0].value=event.target.id 
-        entryHistory.style.display="flex"
+        const history = document.getElementById("history-"+event.target.id) 
+        history.style.display="flex"
     }
 })
 /*----- functions -----*/

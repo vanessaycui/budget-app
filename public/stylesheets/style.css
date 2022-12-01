@@ -140,43 +140,23 @@ body>table{
 }
 
 
-.form-row>div>form>input{
-  margin-left: 5px;
-  width: 100px;
-  height: 10px;
-}
 
-.form-row>div>form>button{
-  width: 30px;
-  height: 17px;
-  font-size: 10px;
-  margin: 0;
-}
-.form-row>button{
-  width: 30px;
-  height: 17px;
-  font-size: 10px;
-  margin: 0;
-}
 
 #income-list{
   color: var(--column-data-income)
 }
 
-.curr-add-btn{
-  text-decoration: none;
-  color: var(--column-curr-add-btn);
-  background-color: var(--column-curr-add-btn-bg);
-  padding: 1px 5px;
-  margin: 0 0 0 10px;
-  border-radius: 5px;
-  border: 1px solid var(--column-curr-add-btn);
-  
+.btn-floating.btn-small {
+  width:20px;
+  height: 20px;
+
 }
-.curr-add-btn:hover{
-  cursor: pointer;
-  background-color: var(--column-curr-add-btn-bg-hover);
+.btn-small {
+  line-height: 18px;
+  font-size: 13px;
+  margin-left: 10px
 }
+
 
 .entry-forms{
   display: flex;
