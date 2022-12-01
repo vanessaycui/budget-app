@@ -216,3 +216,9 @@ body>table{
   display: flex;
   
 }
+
+#dash-chart-container{
+  width: 70%;
+  min-width: 800px;
+  margin: 0 auto;
+}

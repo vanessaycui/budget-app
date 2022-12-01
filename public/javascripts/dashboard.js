@@ -1,5 +1,7 @@
+
 /*----- constants -----*/
-/*----- app's state (variables) -----*/
+
+
 
 /*----- cached element references -----*/
 const addCatBtn = document.querySelector("#add-cat-btn")
@@ -24,6 +26,47 @@ const cancelBtnDash = document.querySelector("#cancel-dash-edit")
 const editDashForm = document.querySelector(".form-overlay")
 const settingsBtn = document.querySelector("#settings-dash")
 
+const dashboardChart= document.getElementById('dash-chart');
+const xaxis = document.getElementById('x-axis').innerHTML.split(",");
+const currentMonthData = document.getElementById('current-data').innerHTML.split(",").map(value => parseInt(value));
+const prevMonthData = document.getElementById('prev-data').innerHTML.split(",").map(value => parseInt(value));
+console.log(prevMonthData)
+/*----- app's state (variables) -----*/
+new Chart(dashboardChart, {
+    type: 'bar',
+    data: {
+      labels: xaxis,
+      datasets: [
+   
+    {
+        label: 'prev. month spending',
+        data: prevMonthData,
+        borderWidth: 1
+    },
+    {
+        label: 'current month spending',
+        data: currentMonthData,
+        borderWidth: 1
+    }
+
+    ]
+    },
+    options: {
+      scales: {
+        y: {
+            beginAtZero: true,
+            ticks: {
+                callback: function(value, index, ticks){
+                    return '$' + value
+                }
+            },
+            display: true
+        }
+      }
+    }
+  });
+
+
 /*----- event listeners -----*/
 settingsBtn.addEventListener('click',(event)=>{
     editDashForm.style.display="flex"
@@ -42,9 +85,6 @@ cancelBtn.forEach(btn =>{
         cancelBtnIncome.style.display="none"
     })
 })
-
-
-
 
 addCatBtn.addEventListener('click', (event)=>{
     catForm.style.display="table"

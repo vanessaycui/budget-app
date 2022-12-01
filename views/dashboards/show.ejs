@@ -20,6 +20,19 @@
 
 <!-- this will be a chart showing all the cool data -->
 
+<div id="dash-chart-container">
+  <canvas id="dash-chart"></canvas>
+</div>
+
+<!-- populating data for chart -->
+<% let xAxis = [] %>
+<% dashboard.categories.forEach( category=>{ %>
+  <% xAxis.push(category.name)%>
+<%}) %>
+<div id="x-axis" style="display: none"><%=xAxis.join(",")%></div>
+<div id="current-data" style="display: none"><%=currentMonth.join(",")%></div>
+<div id="prev-data" style="display: none"><%=prevMonth.join(",")%></div>
+
 <!-- TABLE HEADER -->
 <table>
   <thead>
@@ -92,7 +105,8 @@
 
   </td>
   <td>
-    <%let today = new Date()%>
+    <%let date = new Date()%>
+    <%let today = new Date(date.getFullYear(), date.getMonth(), date.getDate())%>
     <div id="entry-form-categories" style="display:none" class="entry-forms">
       <form action="/dashboards/<%=dashboard.id%>/entries" method="POST">
         <table>
@@ -306,6 +320,7 @@
 </table>
 
 <a href="/dashboards"> back to my dashboard collection</a>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="/javascripts/dashboard.js"></script>
+
 <%- include("../partials/footer.ejs")%>

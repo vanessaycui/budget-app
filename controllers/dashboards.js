@@ -246,5 +246,3 @@ function logout(req, res) {
     res.redirect("/");
   });
 }
-
-

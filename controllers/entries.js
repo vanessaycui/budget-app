@@ -55,7 +55,7 @@ function deleteIncomeEntry(req,res){
 function updateIncomeEntry(req,res){
   console.log(req.body)
   Entry.findById(req.params.eId).exec(function(err, entry){
-    console.log(entry)
+
     //need to edit this.
     entry.company =req.body.company
     entry.date = new Date(req.body.date)
