@@ -14,7 +14,7 @@
     <form action="/dashboards/<%=dashboard.id%>/incomes/<%=income.id%>?_method=DELETE" method="POST">
         <button type="submit">delete income</button>
     </form>
-    <button id="cancel-edit">cancel</button>
+    <button class="cancel-edit">cancel</button>
 </div>
 
 
@@ -33,12 +33,49 @@
             <td><p>$<%=entry.income.toFixed(2)%></p></td>
             <td><p><%=entry.person%></p></td>
             <td><p><%=entry.comment%></p></td>
-            <td><a>edit</a></td>
             <td>
                 <form action="/entries/<%=entry.id%>/incomes/<%=income.id%>?_method=DELETE" method="POST">
                     <button type="submit">delete</button>
                 </form>
             </td>
+            <td>
+                <a id=<%=entry.id%>>edit</a>
+                <div id="form-<%=entry.id%>" style="display:none" >
+                    <form action="/entries/<%=entry.id%>/incomes/<%=income.id%>?_method=PUT" method="POST">
+                        <table>
+                            <tr>
+                              <td><label for="company">Company:</label></td>
+                              <td><input type="text" name="company" value=<%=entry.company%>></td>
+                            </tr>
+                            <tr>
+                              <td><label for="date">Date:</label></td>
+                              <td><input type="date" name="date" value=<%=entry.date.toISOString().slice(0,10)%>></td>
+                            </tr>
+                            <tr>
+                              <td><label for="cost" required>Amount:</label></td>
+                              <td><input type="text" name="income" value=<%=parseInt(entry.income)%>></td>
+                            </tr>
+                            <tr>
+                              <td><label for="comment">Comments:</label></td>
+                              <td> <input type="text" name="comment" value=<%=entry.comment%>></td>
+                            </tr>
+                            <tr>
+                              <td><label for="person">Member:</label></td>
+                              <td><input type="text" name="person" value="<%=entry.person%>"></td>
+                            </tr>
+                            <tr>
+                              <td><button type="submit">done</button></td>
+                  
+                            </tr>
+                  
+                          </table>
+                     
+                    </form>
+                    <button class="cancel-edit">cancel</button>
+                </div>
+            
+            </td>
+
         </tr>
         
     <%})%>

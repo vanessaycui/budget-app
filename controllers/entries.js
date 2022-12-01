@@ -3,7 +3,8 @@ module.exports = {
   create: createEntry,
   deleteCat: deleteCategoryEntry,
   deleteIncome: deleteIncomeEntry,
-  updateCat: updateCategoryEntry
+  updateCat: updateCategoryEntry,
+  updateIncome: updateIncomeEntry
 
 };
 
@@ -40,12 +41,27 @@ function updateCategoryEntry(req,res){
       res.redirect(`/dashboards/${entry.dashboard}/categories/${req.params.cId}`)
     })
   })
-
 }
 
 function deleteIncomeEntry(req,res){
   Entry.findById(req.params.eId).exec(function(err, entry){
     entry.remove()
+    entry.save(function(err){
+      res.redirect(`/dashboards/${entry.dashboard}/incomes/${req.params.iId}`)
+    })
+  })
+}
+
+function updateIncomeEntry(req,res){
+  console.log(req.body)
+  Entry.findById(req.params.eId).exec(function(err, entry){
+    console.log(entry)
+    //need to edit this.
+    entry.company =req.body.company
+    entry.date = new Date(req.body.date)
+    entry.income = req.body.income
+    entry.comment = req.body.comment
+    entry.person = req.body.person
     entry.save(function(err){
       res.redirect(`/dashboards/${entry.dashboard}/incomes/${req.params.iId}`)
     })
