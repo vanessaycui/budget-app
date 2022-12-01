@@ -1,347 +1,351 @@
 <%- include("../partials/header.ejs")%>
-
-<h1><%= dashboard.title %> </h1> 
-<button id="settings-dash">settings</button>
-
-<!-- overlay for editing dashboard -->
-<div class="form-overlay" style="display:none" >
-  <form action="/dashboards/<%=dashboard.id%>?_method=PUT" method="POST">
-    <label>Edit Dashboard Name:</label>
-    <input type="text" name="title" value=<%=dashboard.title%>>
-    <button type="submit">Edit</button>
-  </form>
-  <form action="/dashboards/<%=dashboard.id%>?_method=DELETE" method="POST">
-    <label>I want to delete this dashboard:</label>
-    <button type="submit">delete</button>
-  </form>
-  <button id="cancel-dash-edit">cancel</button>
-
-</div>
-
-<!-- this will be a chart showing all the cool data -->
-
-<div id="dash-chart-container">
-  <canvas id="dash-chart"></canvas>
-</div>
-
-<!-- populating data for chart -->
-<% let xAxis = [] %>
-<% dashboard.categories.forEach( category=>{ %>
-  <% xAxis.push(category.name)%>
-<%}) %>
-<div id="x-axis" style="display: none"><%=xAxis.join(",")%></div>
-<div id="current-data" style="display: none"><%=currentMonth.join(",")%></div>
-<div id="prev-data" style="display: none"><%=prevMonth.join(",")%></div>
-
-<!-- TABLE HEADER -->
-<table>
-  <thead>
-  <td>
-  <div class="data-head">
-    <p>Categories <a id="add-cat-btn"  class="curr-add-btn btn-floating btn-small waves-light" >+</a></p>
-  </div>
-</td>
-<td>
-  <div class="data-head">
-    <p>% change</p>
-  </div>
-</td>
-<td>
-  <div class="data-head">
-    <p>Prev. Month</p>
-  </div>
-</td>
-<td>
-  <div class="data-head">
-    <p>Current Month</p>
-  </div>
-</td>
-<td>
-  <div >
+<div id="dashboard-show-page">
+  <div id="dashboard-show-header">
+    <h1><%= dashboard.title %> </h1> 
+    <button id="settings-dash">settings</button>
 
   </div>
-</td>
-</thead>
-<!-- MAIN TABLE -->
-<tr>
-  <td>
-  <div class="data-col-cat">
-    <div id="cat-list">
-      <% for (let category of dashboard.categories ){ %>
-      <a href="/dashboards/<%=dashboard.id%>/categories/<%=category.id%>"><%=category.name%></a>
-      <%}%>
-    </div>
-  </div>
-  </td>
-  <td>
-    <div id="percent-change" class="data-col-cat">
-      <div>
-        <% for (let categoryPer of change ){ %>
-        <p><%=categoryPer%></p>
-        <%}%>
-      </div>
-      </div>
-  </td>
-  <td>
-    <div id="prev-month-list" class="data-col-cat">
-      <div>
-        <% for (let categoryTotal of prevMonth ){ %>
-        <p><%=categoryTotal%></p>
-        <%}%>
-      </div>
-    </div>
-
-  </td>
-  <td>
-    <div id="current-month-list-cat" class="data-col-cat">
-      <div>
-        <% for (let i=0; i<currentMonth.length; i++){ %>
-          <% let categoryName = dashboard.categories[i].name %>
-          <p><%=currentMonth[i]%> <a class="curr-add-btn btn-floating btn-small waves-light" id=<%=categoryName%> > +</a></p>
-
-        <%}%>
-      </div>
-    </div>
-
-  </td>
-  <td>
-    <%let date = new Date()%>
-    <%let today = new Date(date.getFullYear(), date.getMonth(), date.getDate())%>
-    <div id="entry-form-categories" style="display:none" class="entry-forms">
-      <form action="/dashboards/<%=dashboard.id%>/entries" method="POST">
-        <table>
-          <tr>
-            <td><label for="category">Category:</td>
-            <td><input type="text" name="category" required></td>
-          </tr>
-          <tr>
-            <td><label for="company">Company:</label></td>
-            <td><input type="text" name="company"></td>
-          </tr>
-          <tr>
-            <td><label for="date">Date:</label></td>
-            <td><input type="date" name="date" value=<%=today.toISOString().slice(0,10)%>></td>
-          </tr>
-          <tr>
-            <td><label for="cost" required>Amount:</label></td>
-            <td><input type="text" name="cost"></td>
-          </tr>
-          <tr>
-            <td><label for="comment">Comments:</label></td>
-            <td> <input type="text" name="comment"></td>
-          </tr>
-          <tr>
-            <td><label for="person">Member:</label></td>
-            <td><input type="text" name="person"></td>
-          </tr>
-          <tr>
-           
-            <td><button type="submit">done</button></td>
-
-          </tr>
-        </table>
-      
-      </form>
-      <button class="cancel-form">x</button>
-      
-    </div>
-    <div id="entry-form-income" style="display:none" class="entry-forms">
-      <form action="/dashboards/<%=dashboard.id%>/entries" method="POST">
-        <table>
-          <tr>
-            <td><label for="category">Income:</td>
-            <td><input type="text" name="incomeType" required></td>
-          </tr>
-          <tr>
-            <td><label for="company">Company:</label></td>
-            <td><input type="text" name="company"></td>
-          </tr>
-          <tr>
-            <td><label for="date">Date:</label></td>
-            <td><input type="date" name="date" value=<%=today.toISOString().slice(0,10)%>></td>
-          </tr>
-          <tr>
-            <td><label for="cost" required>Amount:</label></td>
-            <td><input type="text" name="income"></td>
-          </tr>
-          <tr>
-            <td><label for="comment">Comments:</label></td>
-            <td> <input type="text" name="comment"></td>
-          </tr>
-          <tr>
-            <td><label for="person">Member:</label></td>
-            <td><input type="text" name="person"></td>
-          </tr>
-          <tr>
-            <td><button type="submit">done</button></td>
-           
-            
-
-          </tr>
-
-        </table>
-        </form>
-        <button class="cancel-form">x</button>
-        
-     
-    </div>
-  </td>
   
-  </tr>
-  <tr>
-    <td class="form-row">
-      <div   id="cat-form" style="display: none" >
-        <form action="/dashboards/<%=dashboard.id%>/categories" method="POST">
-          <input type="text" name="name" />
-          <button type="submit">ok</button>
-          
+
+  <!-- overlay for editing dashboard -->
+  <div class="form-overlay" style="display:none" >
+    <div>
+        <table id="dash-show-settings">
+          <form action="/dashboards/<%=dashboard.id%>?_method=PUT" method="POST"></form>
+          <tr>
+  
+            <td>
+              <label>Edit Dashboard Name:</label>
+              <input type="text" name="title" value="<%=dashboard.title%>">
+            </td>
+            <td><button type="submit">Edit</button></td>
+          </tr>
         </form>
-        
-        
-      </div>
-    </td>
-    <td class="form-row">
-      <button class="cancel-form cat-btn" style="display:none">x</button>
-    </td>
-    
-    
+        <form action="/dashboards/<%=dashboard.id%>?_method=DELETE" method="POST"></form>
+        <tr>
+          <td><label>I want to delete this dashboard:</label></td>
+          <td><button type="submit">Delete</button></td>
+        </tr>
+        </form>
+        <tr>
+          <td></td>
 
-  </tr>
-    
-  <tr>
-    <td>
-      <div class="data-col-income">
-
-        <div id="income-list" >
-      
-          <% for (let income of dashboard.incomes){ %>
-          <a href="/dashboards/<%=dashboard.id%>/incomes/<%=income.id%>"><%=income.incomeType%></a>
-          <%}%>
+          <td><br>
+            <button id="cancel-dash-edit">Cancel</button>
+          </td>
           
-        </div>
+        </tr>
+        </table>
     </div>
 
-    </td>
-    <td>
-      <div id="percent-change" class="data-col-income">
-        <div>
-          <% for (let incomePer of changeIncome){ %>
-          <p><%=incomePer%></p>
-          <%}%>
-        </div>
-      </div>
+  </div>
 
-    </td>
-    <td>
-      <div id="prev-month-list" class="data-col-income">
+  <!-- this will be a chart showing all the cool data -->
 
-        <div>
-          <% for (let incomeTotal of prevMonthIncome ){ %>
-          <p><%=incomeTotal%></p>
-          <%}%>
-        </div>
-      </div>
+  <div id="dash-chart-container">
+    <canvas id="dash-chart"></canvas>
+  </div>
 
-    </td>
-    <td>
-      <div id="curr-month-list-income"class="data-col-income">
-        <div>
-          <% for (let i=0; i<currentMonthIncome.length; i++){ %>
-            <% let incomeName = dashboard.incomes[i].incomeType %>
-            <p><%=currentMonthIncome[i]%> <a class="curr-add-btn btn-floating btn-small waves-light" id=<%=incomeName%> > + </a></p>
-          <%}%>
-        </div>
+  <!-- populating data for chart -->
+  <% let xAxis = [] %>
+  <% dashboard.categories.forEach( category=>{ %>
+    <% xAxis.push(category.name)%>
+  <%}) %>
+  <div id="x-axis" style="display: none"><%=xAxis.join(",")%></div>
+  <div id="current-data" style="display: none"><%=currentMonth.join(",")%></div>
+  <div id="prev-data" style="display: none"><%=prevMonth.join(",")%></div>
+
+  <!-- TABLE HEADER -->
+  <div id="dashboard-show-table">
+    <table>
+      <thead>
+        <td></td>
+      <td>
+      <div class="data-head">
+        <p>Categories <a id="add-cat-btn"  class="curr-add-btn btn-floating btn-small waves-light" >+</a></p>
       </div>
     </td>
     <td>
-      <div id="entry-history">
-        <!-- optional -->
-        
-        <% for (let category in recentEntries){%>
-          <div id="history-<%=category.split(" ")[0]%>" style="display: none">
-            <p>Previous Entries:</p>
-            <% if (recentEntries[category].length <5){%>
-              <%for (let record of recentEntries[category]){%>
-                <p><%=record%></p>
-        
-              <%}%>
-            <%} else {%>
-              <%for (let i=0; i<5;i++){%>
-                <p><%=recentEntries[category][i]%></p>
-        
-              <%}%>
+      <div class="data-head">
+        <p>% change</p>
+      </div>
+    </td>
+    <td>
+      <div class="data-head">
+        <p>Prev. Month</p>
+      </div>
+    </td>
+    <td>
+      <div class="data-head">
+        <p>Current Month</p>
+      </div>
+    </td>
+    <td>
+      <div >
 
+      </div>
+    </td>
+    </thead>
+    <!-- MAIN TABLE -->
+    <tr>
+      <td></td>
+      <td>
+        <div class="data-col-cat">
+          <div id="cat-list">
+            <% for (let category of dashboard.categories ){ %>
+            <a href="/dashboards/<%=dashboard.id%>/categories/<%=category.id%>"><%=category.name%></a>
             <%}%>
-          
           </div>
-      
-        <%}%>
-      
-      </div>
-      
-    </td>
-  </tr>
-  <tr >
-    <td class="form-row">
-      <div id="income-form" style="display: none">
-        <form action="/dashboards/<%=dashboard.id%>/incomes" method="POST">
-          <input type="text" name="incomeType" />
-          <button type="submit">ok</button>
+        </div>
+      </td>
+      <td>
+        <div id="percent-change" class="data-col-cat">
+          <div>
+            <% for (let categoryPer of change ){ %>
+            <p><%=categoryPer%></p>
+            <%}%>
+          </div>
+          </div>
+      </td>
+      <td>
+        <div id="prev-month-list" class="data-col-cat">
+          <div>
+            <% for (let categoryTotal of prevMonth ){ %>
+            <p><%=categoryTotal%></p>
+            <%}%>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div id="current-month-list-cat" class="data-col-cat">
+          <div>
+            <% for (let i=0; i<currentMonth.length; i++){ %>
+              <% let categoryName = dashboard.categories[i].name %>
+              <p><%=currentMonth[i]%> <a class="curr-add-btn btn-floating btn-small waves-light" id=<%=categoryName%> > +</a></p>
+            <%}%>
+          </div>
+        </div>
+
+      </td>
+      <td>
+        <%let date = new Date()%>
+        <%let today = new Date(date.getFullYear(), date.getMonth(), date.getDate())%>
+        <div id="entry-form-categories" style="display:none" class="entry-forms">
+          <form action="/dashboards/<%=dashboard.id%>/entries" method="POST">
+            <table>
+              <tr>
+                <td><label for="category">Category:</td>
+                <td><input type="text" name="category" required></td>
+              </tr>
+              <tr>
+                <td><label for="company">Company:</label></td>
+                <td><input type="text" name="company"></td>
+              </tr>
+              <tr>
+                <td><label for="date">Date:</label></td>
+                <td><input type="date" name="date" value=<%=today.toISOString().slice(0,10)%>></td>
+              </tr>
+              <tr>
+                <td><label for="cost" required>Amount:</label></td>
+                <td><input type="text" name="cost"></td>
+              </tr>
+              <tr>
+                <td><label for="comment">Comments:</label></td>
+                <td> <input type="text" name="comment"></td>
+              </tr>
+              <tr>
+                <td><label for="person">Member:</label></td>
+                <td><input type="text" name="person"></td>
+              </tr>
+              <tr>
+              
+                <td><button type="submit">done</button></td>
+
+              </tr>
+            </table>
           
-        </form>
-   
-      </div>
-    </td>
-    <td class="form-row">
-      <button class="cancel-form income-btn" style="display:none">x</button>
-    </td>
-  </tr>
+          </form>
+          <button class="cancel-form">x</button>
+          
+        </div>
+        <div id="entry-form-income" style="display:none" class="entry-forms">
+          <form action="/dashboards/<%=dashboard.id%>/entries" method="POST">
+            <table>
+              <tr>
+                <td><label for="category">Income:</td>
+                <td><input type="text" name="incomeType" required></td>
+              </tr>
+              <tr>
+                <td><label for="company">Company:</label></td>
+                <td><input type="text" name="company"></td>
+              </tr>
+              <tr>
+                <td><label for="date">Date:</label></td>
+                <td><input type="date" name="date" value=<%=today.toISOString().slice(0,10)%>></td>
+              </tr>
+              <tr>
+                <td><label for="cost" required>Amount:</label></td>
+                <td><input type="text" name="income"></td>
+              </tr>
+              <tr>
+                <td><label for="comment">Comments:</label></td>
+                <td> <input type="text" name="comment"></td>
+              </tr>
+              <tr>
+                <td><label for="person">Member:</label></td>
+                <td><input type="text" name="person"></td>
+              </tr>
+              <tr>
+                <td><button type="submit">done</button></td>
+              
+                
 
+              </tr>
 
-<!-- TABLE SUMMARY  -->
-<td>
+            </table>
+            </form>
+            <button class="cancel-form">x</button>
+            
+        
+        </div>
+      </td>
+      
+    </tr>
+    <!-- <tr>
+      <td></td>
+      <td class="form-row">
+        <div   id="cat-form" style="display: none" >
+          <form action="/dashboards/<%=dashboard.id%>/categories" method="POST">
+            <input type="text" name="name" />
+            <button type="submit">ok</button>   
+          </form>
 
-  <div class="data-footer">
-    <p>Income<a id="add-income-btn" class="curr-add-btn btn-floating btn-small waves-light">+</a></p>
+        </div>
+      </td>
+      <td class="form-row">
+        <button class="cancel-form cat-btn" style="display:none">x</button>
+      </td>
+    </tr> -->
+    <tr>
+      <td></td>
+      <td>
+        <div class="data-col-income">
+          <div id="income-list" >
+            
+            <% for (let income of dashboard.incomes){ %>
+              <a href="/dashboards/<%=dashboard.id%>/incomes/<%=income.id%>"><%=income.incomeType%></a>
+            <%}%>
+                
+          </div>
+        </div>
+
+      </td>
+      <td>
+        <div id="percent-change" class="data-col-income">
+          <div>
+            <% for (let incomePer of changeIncome){ %>
+              <p><%=incomePer%></p>
+            <%}%>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div id="prev-month-list" class="data-col-income">
+          <div>
+            <% for (let incomeTotal of prevMonthIncome ){ %>
+              <p><%=incomeTotal%></p>
+            <%}%>
+          </div>
+        </div>
+
+      </td>
+      <td>
+        <div id="curr-month-list-income"class="data-col-income">
+          <div>
+            <% for (let i=0; i<currentMonthIncome.length; i++){ %>
+              <% let incomeName = dashboard.incomes[i].incomeType %>
+                <p><%=currentMonthIncome[i]%> <a class="curr-add-btn btn-floating btn-small waves-light" id=<%=incomeName%> > + </a></p>
+              <%}%>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div id="entry-history">
+          <% for (let category in recentEntries){%>
+            <div id="history-<%=category.split(" ")[0]%>" style="display: none">
+              <p>Previous Entries:</p>
+                <% if (recentEntries[category].length <5){%>
+                  <%for (let record of recentEntries[category]){%>
+                    <p><%=record%></p>
+                  <%}%>
+                <%} else {%>
+                  <%for (let i=0; i<5;i++){%>
+                    <p><%=recentEntries[category][i]%></p>
+                  <%}%>
+                <%}%>
+            </div>
+          <%}%>
+        </div>
+      </td>
+    </tr>
+    <!-- <tr >
+      <td></td>
+      <td class="form-row">
+        <div id="income-form" style="display: none">
+          <form action="/dashboards/<%=dashboard.id%>/incomes" method="POST">
+            <input type="text" name="incomeType" />
+            <button type="submit">ok</button>
+              
+          </form>
+      
+        </div>
+      </td>
+      <td class="form-row">
+        <button class="cancel-form income-btn" style="display:none">x</button>
+      </td>
+    </tr> -->
+    <!-- TABLE SUMMARY  -->
+    <tr>
+      <td></td>
+      <td>
+        <div class="data-footer">
+          <p>Income<a id="add-income-btn" class="curr-add-btn btn-floating btn-small waves-light">+</a></p>
+        </div>
+      </td>
+      <td>
+        <div class="data-footer">
+          <div>
+            <p>Expense Total:</p>
+            <p>Income Total:</p>
+            <p>Net Savings:</p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="data-footer">
+          <div>
+            <p><%=prevMonthSummary[0]%></p>
+            <p><%=prevMonthSummary[1]%></p>
+            <p><%=prevMonthSummary[2]%></p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="data-footer">
+          <div>
+            <p><%=currentMonthSummary[0]%></p>
+            <p><%=currentMonthSummary[1]%></p>
+            <p><%=currentMonthSummary[2]%></p>
+          </div>
+        </div>
+      </td>
+      <td></td>
+    </tr>
+    </table>
   </div>
-</td>
-<td>
-  <div class="data-footer">
-    <div>
-      <p>Expense Total:</p>
-      <p>Income Total:</p>
-      <p>Net Savings:</p>
-    </div>
-  </div>
-  </td>
-  <td>
-  
-  <div class="data-footer">
-    <div>
-      <p><%=prevMonthSummary[0]%></p>
-      <p><%=prevMonthSummary[1]%></p>
-      <p><%=prevMonthSummary[2]%></p>
-    </div>
-  </div>
-  </td>
-  <td>
 
-  <div class="data-footer">
-    <div>
-      <p><%=currentMonthSummary[0]%></p>
-      <p><%=currentMonthSummary[1]%></p>
-      <p><%=currentMonthSummary[2]%></p>
-    </div>
-  </div>
-  </td>
-  <td>
-  
-  </td>
-</tr>
-</table>
+</div>
 
-
-<a href="/dashboards"> back to my dashboard collection</a>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="/javascripts/dashboard.js"></script>
 

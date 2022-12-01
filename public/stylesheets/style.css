@@ -1,4 +1,13 @@
 :root{
+  --all-background-color: whitesmoke;
+  --navbar-bg-color: rgba(255,255,255,0);
+  --navbar-font-color: black;
+  --navbar-font-color-hover: black;
+  --login-card-bg: black;
+
+  --dashboard-card-bg: black;
+  --dashboard-card-font: aquamarine;
+
   --column-data-color: pink;
   --column-data-income: green;
   --column-curr-add-btn: purple;
@@ -8,50 +17,179 @@
   --column-cat-text-color-hover: grey;
   --column-income-text-color: green;
   --column-income-text-color-hover: grey;
-  --dash-edit-delete-form-overlay-bg: rgba(0,0,0,0.4);
+  --dash-edit-delete-form-overlay-bg: rgba(255,255,255,0.9);
 }
-
 
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  margin: 0 auto;
+  background-color: var(--all-background-color);
+  font-family: 'Manrope', sans-serif;
+  margin: 0;
 }
-a {
-  color: #00B7FF;
+
+nav{
+  position: fixed;
+  top:0;
+  color:var(--navbar-font-color);
+  background-color: var(--navbar-bg-color);
+  width: 100%;
+  height: 56px;
+  line-height: 56px;
+  box-shadow: none;
+}
+
+nav ul a {
+
+  font-size: 1rem;
+  color: var(--navbar-font-color);
+  display: block;
+  padding: 0 15px;
+
+}
+nav ul a:hover{
+
+  background-color: var(--navbar-bg-color);
+  color: var(--navbar-font-color-hover);
+  cursor: pointer;
+  font-style: italic;
+}
+
+nav ul li {
+  padding: 0 10px;
+}
+
+nav div{
+  margin: 0 5%;
+}
+nav .brand-logo {
+  position: absolute;
+  color: var(--navbar-font-color);
+  display: inline-block;
+  font-size: 2rem;
+  padding: 0;
+}
+
+/* ----------dashboard show page----------- */
+#dashboard-show-page{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#dashboard-show-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+}
+
+#dashboard-show-header > h1{
+  margin: 0;
+}
+#dashboard-show-header button{
+  padding: 10px;
+  background-color: var(--dashboard-card-bg);
+  color:var(--dashboard-card-font);
+  border-radius: 5px;
+  border: none;
+  transition: 0.3s;
+  margin: 0 40px;
+}
+
+#dashboard-show-header button:hover{
+  color: var(--dashboard-card-bg);
+  background-color:var(--dashboard-card-font);
+  border-radius: 5px;
+  padding: 15px 10px;
+  cursor: pointer;
 }
 
 .hide-form{
   display: none;
 }
+
+/* dash show settings css */
 .form-overlay{
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   top:0;
   left: 0;
   background-color: var(--dash-edit-delete-form-overlay-bg);
   height: 100%;
   width: 100%;
+  z-index: 2;
+}
+.form-overlay>div{
+  position: relative;
+  top: 300px;
+}
+#dash-show-settings button{
+  padding: 10px;
+  background-color: var(--dashboard-card-bg);
+  color:var(--dashboard-card-font);
+  border-radius: 5px;
+  border: none;
+  transition: 0.3s;
+  margin: 0 40px;
+}
+#dash-show-settings button:hover{
+  color: var(--dashboard-card-bg);
+  background-color:var(--dashboard-card-font);
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+#dash-show-settings #cancel-dash-edit{
+  padding: 10px;
+  color: var(--dashboard-card-bg);
+  background-color:var(--dashboard-card-font);
+  border-radius: 5px;
+  border: none;
+  transition: 0.3s;
+  margin: 0 40px;
 }
 
-body>table{
+#dash-show-settings #cancel-dash-edit:hover{
+  background-color: var(--dashboard-card-bg);
+  color:var(--dashboard-card-font);
+  border-radius: 5px;
+  padding: 15px;
+  cursor: pointer;
+}
+
+#dash-show-settings label{
+  color: black;
+  font-size: 20px;
+  font-weight:600;
+}
+
+td{
+  min-width: 200px;
+  padding: 2px 2px;
+}
+
+tr {
+  border-bottom: none;
+}
+
+#dashboard-show-table{
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  margin-left: 20%;
-
+  align-items: center;
 }
+
+#dashboard-show-table table{
+  width: 700px;
+}
+
 .data-footer{
   margin: 0 1%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 50px;
-  min-width: 150px;
+  height: 100px;
   background-color: var(--column-data-color);
   border-radius: 10px;
   padding: 5px 0 0 0;
@@ -198,8 +336,8 @@ body>table{
 }
 
 #dash-chart-container{
-  width: 70%;
-  min-width: 800px;
+  width: 600px;
+  height: 300px;
   margin: 0 auto;
 }
 
@@ -207,3 +345,175 @@ body>table{
   display: flex;
   flex-direction: column;
 }
+
+
+
+/* -------------login page css------------- */
+
+#login-page{
+  background-color: var(--login-bg-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+#login-page>div{
+  background-color: var(--login-bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--login-card-bg);
+  height: 200px;
+  width: 300px;
+  margin-top: 340px;
+
+}
+
+#login-page>div>h1{
+  position:absolute;
+  top:200px;
+  font-size: 100px;
+  margin-bottom: 0;
+}
+
+
+#google-logo{
+  height: 60px;
+  width: 60px;
+  transition: 0.3s;
+}
+
+#google-logo:hover{
+  height: 100px;
+  width: 100px;
+  transition: 0.3s;
+}
+
+/* -------------dashboard index page css------------- */
+
+#dashboard-index{
+  margin: 0 7%;
+}
+
+#dashboard-index>h1{
+  text-align: center;
+}
+
+#dashboard-content{
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  grid-template-rows:  150px 1fr;
+  grid-template-areas: "title title"
+  "dash create";
+
+  min-width: 900px;
+
+}
+
+#dash-index-header{
+  grid-area: title;
+  display: flex;
+  align-items: flex-end;
+  height: 150px;
+}
+#dash-index-header>h1{
+  margin:0;
+}
+
+#dash-card-section{
+  grid-area: dash;
+
+}
+#create-dash-section{
+  grid-area: create;
+  padding-top: 30px;
+
+}
+#create-dash-btn{
+  margin-top: 80px;
+}
+#dashboard-creation{
+  margin-top: 80px;
+}
+#dashboard-card-collection{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.dashboard-card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--dashboard-card-bg);
+  height: 200px;
+  width: 200px;
+  border-radius: 5px;
+  text-align: center;
+}
+.dashboard-card>a{
+  font-size: 15px;
+  color:var(--dashboard-card-font);
+
+  transition: 0.3s;
+}
+
+.dashboard-card>a:hover{
+  font-size: 20px;
+
+  transition: 0.3s;
+}
+
+#create-dash-section>button{
+  padding: 10px;
+  color: var(--dashboard-card-bg);
+  background-color:var(--dashboard-card-font);
+  border-radius: 5px;
+  border: none;
+  transition: 0.3s;
+
+}
+
+#create-dash-section>button:hover{
+  background-color: var(--dashboard-card-bg);
+  color:var(--dashboard-card-font);
+  padding: 15px 10px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+
+}
+
+#dashboard-creation button{
+  padding: 10px;
+  background-color: var(--dashboard-card-bg);
+  color:var(--dashboard-card-font);
+  border-radius: 5px;
+  border: none;
+  transition: 0.3s;
+}
+
+
+#dashboard-creation button:hover{
+  color: var(--dashboard-card-bg);
+  background-color:var(--dashboard-card-font);
+  border-radius: 5px;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+
+}
+
+
+
+
+

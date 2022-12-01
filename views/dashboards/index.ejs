@@ -1,33 +1,59 @@
 <%- include("../partials/header.ejs")%>
 
-    <h1>Welcome Back, <%=user.name%></h1>
-    <a href="/dashboards/logout">Log Out </a>
-<!-- list all of user's dashboard(s) -->
-    <% if (dashboards.length !== 0) { %>
-        <h2>Your Dashboards:</h2>
-  
-            <%dashboards.forEach(dashboard=>{%>
-     
-                  <a href="/dashboards/<%=dashboard.id%>"><%=dashboard.title%></a>
-                  
+
+<div id="dashboard-index">
+    
+
+    <div id="dashboard-content">
+        <section id="dash-index-header">
+            <h1>Welcome Back, <%=user.name%></h1>
+        </section>
+        <section id="dash-card-section">
+            <!-- list all of user's dashboard(s) -->
+            <h2>Your Dashboards:</h2>
+            <div id="dashboard-card-collection">
+            <% if (dashboards.length !== 0) { %>
                 
+                    <%dashboards.forEach(dashboard=>{%>
+                        <div class="dashboard-card">
+                        <a href="/dashboards/<%=dashboard.id%>"><%=dashboard.title%></a>
+                        </div>
+              
+                    <%})%>
+            <%} else {%>
+                <p>Create a new dashboad to begin</p>
+
+            <%}%>
+            </div>
+
+        </section>
+        <section id="create-dash-section">
+            
+            <button id="create-dash-btn"> Create a new dashboard</button>
+            
+            <section id="dashboard-creation" class="hide-form">
+                <form action="/dashboards" method="POST">
+                    <label for="name">Dashboard title:</label>
+                    <br>
+                    <input type="text" name="title" required>
+                    <br>
+                    <button type="submit"> Done </button>
+                </form>
                 <br>
-            <%})%>
+                <button id="form-cancel-button"> Cancel</button>
+                </section>
+                <script src="/javascripts/main.js"></script>
+
+        </section>
+
+    
+
+   
+
+    <!-- user has no dashboards, prompt user to create a new dashboard -->
 
         
+    </div>
 
-<!-- user has no dashboards, prompt user to create a new dashboard -->
-    <%} %>
-    <button id="create-dash-btn"> Create a new dashboard</button>
-    <br>
-    <section id="dashboard-creation" class="hide-form">
-        <form action="/dashboards" method="POST">
-            <label for="name">Dashboard title:</label>
-            <br>
-            <input type="text" name="title" required>
-            <br>
-            <button type="submit"> Done </button>
-        </form>
-    </section>
-    <script src="/javascripts/main.js"></script>
+</div>
 <%- include("../partials/footer.ejs")%>
