@@ -1,8 +1,8 @@
 :root{
   --all-background-color: whitesmoke;
-  --navbar-bg-color: rgba(255,255,255,0.5);
+  --navbar-bg-color: rgba(255,255,255,0);
   --navbar-font-color: black;
-  --navbar-font-color-hover: black;
+  --navbar-font-color-hover: aquamarine;
   --login-card-bg: whitesmoke;
 
   --entry-history-color: black;
@@ -41,13 +41,19 @@ nav{
 
 nav ul a {
 
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--navbar-font-color);
   display: block;
   padding: 0 15px;
 
 }
 nav ul a:hover{
+
+  background-color: var(--navbar-bg-color);
+  cursor: pointer;
+  font-style: italic;
+}
+nav .brand-logo:hover{
 
   background-color: var(--navbar-bg-color);
   color: var(--navbar-font-color-hover);
@@ -166,12 +172,12 @@ button:hover{
   font-weight:600;
 }
 
-td{
+#dashboard-show-page td{
   min-width: 200px;
   padding: 2px 1px;
 }
 
-tr {
+#dashboard-show-page tr {
   border-bottom: none;
 }
 
@@ -597,7 +603,7 @@ tr {
 .show-header{
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   height: 150px;
   margin-top: 10px;
 }
@@ -685,8 +691,7 @@ tr {
 .edit-btn:hover{
   color: var(--dashboard-card-bg);
   background-color:var(--dashboard-card-font);
-  padding: 10px 15px;
-  border-radius: 5px;
+  padding: 15px 10px;
   cursor:pointer;
   transition: 0.3s;
 }
@@ -694,4 +699,21 @@ tr {
 .show-table > thead{
   font-size: 1.5rem;
   font-weight:500;
+}
+
+.show-edit-form{
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
+.show-edit-form button{
+  width: 75px;
+}
+
+.show-entries button:hover{
+  color: var(--dashboard-card-bg);
+  background-color:var(--dashboard-card-font);
+  padding: 15px 10px;
+  cursor:pointer;
+  transition: 0.3s;
 }

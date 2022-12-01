@@ -1,4 +1,13 @@
 <%- include("../partials/header.ejs")%>
+<nav>
+    <div>
+      <a class="brand-logo" href="/dashboards/<%=dashboard.id%>"> <- go back to <%=dashboard.title%></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/dashboards">DASHBOARD COLLECTION</a></li>
+        <li><a href="/logout">LOGOUT</a></li>
+      </ul>
+    </div>
+  </nav>
 <div class="entry-show-page">
     <div class="show-header">
         <h1> Entries for <%=category.name%> category:</h1>
@@ -56,49 +65,27 @@
                     </td>
                     <td>
                         <a class="edit-btn" id="<%=entry.id%>">edit</a>
-
-                        <div id="form-<%=entry.id%>" style="display:none" >
+                        <div id="form-<%=entry.id%>" style="display:none" class="show-edit-form">
                             <form action="/entries/<%=entry.id%>/categories/<%=category.id%>?_method=PUT" method="POST">
-                                <table>
-                                    <tr>
-                                      <td><label for="company">Company:</label></td>
-                                      <td><input type="text" name="company" value=<%=entry.company%>></td>
-                                    </tr>
-                                    <tr>
-                                      <td><label for="date">Date:</label></td>
-                                      <td><input type="date" name="date" value=<%=today.toISOString().slice(0,10)%>></td>
-                                    </tr>
-                                    <tr>
-                                      <td><label for="cost" required>Amount:</label></td>
-                                      <td><input type="text" name="cost" value=<%=entry.cost%>></td>
-                                    </tr>
-                                    <tr>
-                                      <td><label for="comment">Comments:</label></td>
-                                      <td> <input type="text" name="comment" value=<%=entry.comment%>></td>
-                                    </tr>
-                                    <tr>
-                                      <td><label for="person">Member:</label></td>
-                                      <td><input type="text" name="person" value=<%=entry.comment%>></td>
-                                    </tr>
-                                    <tr>
-                                     
-                                      <td><button type="submit">done</button></td>
-                          
-                                    </tr>
-                                  </table>
-                             
+                                <label for="company">Company:</label>
+                                <input type="text" name="company" value=<%=entry.company%>>
+                                <label for="date">Date:</label>
+                                <input type="date" name="date" value=<%=today.toISOString().slice(0,10)%>>
+                                <label for="cost" required>Amount:</label>
+                                <input type="text" name="cost" value=<%=entry.cost%>>
+                                <label for="comment">Comments:</label>
+                                <input type="text" name="comment" value=<%=entry.comment%>>
+                                <label for="person">Member:</label>
+                                <input type="text" name="person" value=<%=entry.comment%>>
+                                <button type="submit">done</button>
                             </form>
                             <button class="cancel-edit">cancel</button>
                         </div>
                     </td>
-                    
                 </tr>
-                
             <%})%>
         </table>
-   
     </div>
-    
 </div>
     <script src="/javascripts/category.js"></script>
 <%- include("../partials/footer.ejs")%>
