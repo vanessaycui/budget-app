@@ -97,6 +97,7 @@
           </form>
           <button class="cancel-form cat-btn" >x</button>
         </div>
+        
       </td>
       <td>
         <div class="data-col-cat">
@@ -156,10 +157,12 @@
               <input type="text" name="cost">
               <input type="text" name="comment">
               <input type="text" name="person">
-              <button type="submit">done</button>  
+              <button type="submit">done</button>               
             </Section>  
           </form>
-          <button class="cancel-form">x</button>
+          <section>
+            <button class="cancel-form">x</button>
+          </section>
         </div>
         <div id="entry-form-income" style="display:none" class="entry-forms">
           <form action="/dashboards/<%=dashboard.id%>/entries" method="POST">
@@ -181,7 +184,9 @@
               <button type="submit">done</button>
             </section>
             </form>
+            <section>
             <button class="cancel-form">x</button>
+            </section>
         </div> 
       </td>
     </tr>
@@ -245,16 +250,18 @@
         <div id="entry-history">
           <% for (let category in recentEntries){%>
             <div id="history-<%=category.split(" ")[0]%>" style="display: none">
-              <p>Previous Entries:</p>
+              <h5>Previous Entries:<h5>
+                <ul>
                 <% if (recentEntries[category].length <5){%>
                   <%for (let record of recentEntries[category]){%>
-                    <p><%=record%></p>
+                    <li><p><%=record%></p></li>
                   <%}%>
                 <%} else {%>
                   <%for (let i=0; i<5;i++){%>
-                    <p><%=recentEntries[category][i]%></p>
+                    <li><p><%=recentEntries[category][i]%></p></li>
                   <%}%>
                 <%}%>
+                </ul>
             </div>
           <%}%>
         </div>
