@@ -24,7 +24,7 @@
                         <input type="text" name="name" value="<%=category.name%>" regular pattern = "[a-zA-Z0-9 ]{1,20}" required>
                         <p>Please ensure new name only includes 1-20 alphanumeric characters, including spaces and _</p>
                     </td>
-                    <td><button type="submit">Edit</button></td>
+                    <td><button type="submit">edit</button></td>
                 </tr>
             </form>
             <form action="/dashboards/<%=dashboard.id%>/categories/<%=category.id%>?_method=DELETE" method="POST">
