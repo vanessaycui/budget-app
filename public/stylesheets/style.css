@@ -10,6 +10,7 @@
   --dashboard-card-font: #D6E4E5;
 
   --column-data-color:#EFF5F5;
+  --column-data-color-hover: #D6E4E5;
   --table-font-color: #1E2022;
   --column-curr-add-btn: purple;
   --column-curr-add-btn-bg: #AAAAAA;
@@ -210,6 +211,11 @@ button:hover{
   border-radius: 10px;
   padding: 5px 0 0 0;
   font-size: 1rem;
+  transition: 0.5s;
+}
+.data-footer:hover{
+  background-color: var(--column-data-color-hover);
+  transition: 0.5s;
 }
 
 .data-footer >div> p{
@@ -231,7 +237,13 @@ button:hover{
   border: 1px solid #497174;
   border-radius: 10px;
   padding: 10px 0 0 0;
+  transition: 0.5s;
 }
+.data-head:hover{
+  background-color: var(--column-data-color-hover);
+  transition: 0.5s;
+}
+
 
 .data-head>input{
   width: 50px;
@@ -255,6 +267,11 @@ button:hover{
   border: 1px solid #497174;
   border-radius: 10px;
   flex: auto;
+  transition: 0.5s;
+}
+.data-col-cat:hover{
+  background-color: var(--column-data-color-hover);
+  transition: 0.5s;
 }
 .data-money{
   margin: 0 1%;
@@ -270,8 +287,11 @@ button:hover{
   border: 1px solid #497174;
   border-radius: 10px;
   flex: auto;
-
-
+  transition: 0.5s;
+}
+.data-money:hover{
+  background-color: var(--column-data-color-hover);
+  transition: 0.5s;
 }
 .data-money-plus{
   margin: 0 1%;
@@ -287,9 +307,12 @@ button:hover{
   border: 1px solid #497174;
   border-radius: 10px;
   flex: auto;
+  transition: 0.5s;
 }
-
-
+.data-money-plus:hover{
+  background-color: var(--column-data-color-hover);
+  transition: 0.5s;
+}
 #cat-list>a{
   display: block;
   text-align: left;
@@ -338,6 +361,7 @@ button:hover{
 .btn-small:hover {
   background-color:var(--column-curr-add-btn-bg-hover);
   transition: 0.1s;
+  transition: 0.3s;
 }
 /* ----------styling entry forms -------------- */
 .entry-forms form{
@@ -584,6 +608,7 @@ button:hover{
   width: 200px;
   border-radius: 5px;
   text-align: center;
+  transition: 0.5s;
 }
 .dashboard-card>a{
   font-size: 15px;
@@ -596,6 +621,17 @@ button:hover{
   font-size: 20px;
   color:#EFF5F5;
   transition: 0.3s;
+}
+.dashboard-card:hover{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--column-cat-text-color-hover);
+  height: 200px;
+  width: 200px;
+  border-radius: 5px;
+  text-align: center;
+  transition: 0.5s;
 }
 
 #create-dash-section>button{
