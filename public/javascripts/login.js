@@ -1,12 +1,8 @@
 
-/*----- constants -----*/
-/*----- app's state (variables) -----*/
-/*----- cached element references -----*/
 
+/*----- cached element references -----*/
 const userStatus= document.querySelector("#user-status")
 const navBarLinks = document.querySelectorAll("#nav-mobile>li")
-
-/*----- event listeners -----*/
 
 /*----- functions -----*/
 checkUser()

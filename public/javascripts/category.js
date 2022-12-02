@@ -1,15 +1,12 @@
-/*----- constants -----*/
+
 /*----- app's state (variables) -----*/
 let entryForm;
 
 /*----- cached element references -----*/
-
 const cancelBtn = document.querySelectorAll(".cancel-edit")
 const editSettingsForm = document.querySelector("#cat-settings-form")
 const settingsBtn = document.querySelector("#settings-category")
 const editBtns = document.querySelectorAll(".edit-btn")
-
-
 
 /*----- event listeners -----*/
 settingsBtn.addEventListener('click',(event)=>{
@@ -39,6 +36,4 @@ editBtns.forEach(btn => {
     })
 })
 
-
-/*----- functions -----*/
 

@@ -6,25 +6,19 @@ const entryDivs = document.querySelectorAll("#entry-history>div")
 const addCatBtn = document.querySelector("#add-cat-btn")
 const catForm = document.querySelector("#cat-form")
 const catList = document.querySelector("#cat-list")
-
 const addIncomeBtn = document.querySelector("#add-income-btn")
 const incomeForm = document.querySelector("#income-form")
 const incomeList = document.querySelector("#income-list")
-
 const currentMonthListCat = document.querySelector("#current-month-list-cat")
 const currentMonthListIncome = document.querySelector("#curr-month-list-income")
 const categoryEntryForm = document.querySelector("#entry-form-categories")
 const incomeEntryForm = document.querySelector("#entry-form-income")
-
-
 const cancelBtn = document.querySelectorAll(".cancel-form")
 const cancelBtnCat = document.querySelector(".cat-btn")
 const cancelBtnIncome = document.querySelector(".income-btn")
-
 const cancelBtnDash = document.querySelector("#cancel-dash-edit")
 const editDashForm = document.querySelector(".form-overlay")
 const settingsBtn = document.querySelector("#settings-dash")
-
 const dashboardChart= document.getElementById('dash-chart');
 const xaxis = document.getElementById('x-axis').innerHTML.split(",");
 const currentMonthData = document.getElementById('current-data').innerHTML.split(",").map(value => parseInt(value));
@@ -32,11 +26,8 @@ const prevMonthData = document.getElementById('prev-data').innerHTML.split(",").
 
 /*----- app's state (variables) -----*/
 new Chart(dashboardChart, {
-    
     type: 'bar',
- 
     data: {
-    
       labels: xaxis,
       datasets: [
     {
@@ -51,7 +42,6 @@ new Chart(dashboardChart, {
         borderWidth: 1,
         backgroundColor: 'rgba(235, 100, 64, 0.95)'
     }
-
     ]
     },
     options: {

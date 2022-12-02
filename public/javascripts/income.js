@@ -1,4 +1,3 @@
-/*----- constants -----*/
 /*----- app's state (variables) -----*/
 let entryForm;
 /*----- cached element references -----*/
@@ -12,6 +11,7 @@ const editBtns = document.querySelectorAll(".edit-btn")
 settingsBtn.addEventListener('click',(event)=>{
     editSettingsForm.style.display="flex"
 })
+
 cancelBtn.forEach(btn=>{
     btn.addEventListener('click',(event)=>{
         editSettingsForm.style.display="none"
@@ -21,6 +21,7 @@ cancelBtn.forEach(btn=>{
         })
     })
 })
+
 editBtns.forEach(btn => {
     btn.addEventListener('click',(event)=>{
         if (event.target.tagName ==="A"){
@@ -30,7 +31,6 @@ editBtns.forEach(btn => {
                 btn.style.display="none"
             })
         }
-    
     })
 })
 
