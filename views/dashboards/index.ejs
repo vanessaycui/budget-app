@@ -38,14 +38,15 @@
             <button id="create-dash-btn"> Create a new dashboard</button>
             
             <section id="dashboard-creation" class="hide-form">
-                <form action="/dashboards" method="POST">
-                    <label for="name">Dashboard title:</label>
+                <form action="/dashboards" method="POST" autocomplete="off">
+                    <label for="name">Dashboard title: </label>
                     <br>
-                    <input type="text" name="title" required>
+                    <input type="text" name="title" regular pattern = "[a-zA-Z0-9 ]{1,15}" required>
+                    <label>1 word, max. 15 alphanumeric characters inlcuding spaces, digits, and _ </label>
+                    <br>
                     <br>
                     <button type="submit"> Done </button>
                 </form>
-                <br>
                 <button id="form-cancel-button"> Cancel</button>
                 </section>
                 <script src="/javascripts/main.js"></script>

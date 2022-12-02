@@ -103,7 +103,6 @@ addIncomeBtn.addEventListener('click', (event)=>{
 currentMonthListCat.addEventListener("click", (event)=>{
     entryDivs.forEach(div=>div.style.display="none")
     if (event.target.tagName === "A"){
-        console.log(event.target.id)
         categoryEntryForm.style.display= "flex";
         incomeEntryForm.style.display= "none";
         categoryEntryForm.children[0][0].value=event.target.id
@@ -116,7 +115,6 @@ currentMonthListIncome.addEventListener("click", (event)=>{
     entryDivs.forEach(div=>div.style.display="none") 
     if (event.target.tagName === "A"){
         categoryEntryForm.style.display= "none"
-        console.log(event.target.id.split(" ")[0]);
         incomeEntryForm.style.display= "flex";
         incomeEntryForm.children[0][0].value=event.target.id 
         const history = document.getElementById("history-"+event.target.id) 

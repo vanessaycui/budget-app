@@ -22,7 +22,7 @@
           <tr>
             <td>
               <label>Edit Dashboard Name:</label>
-              <input type="text" name="title" value="<%=dashboard.title%>">
+              <input type="text" name="title" value="<%=dashboard.title%>" regular pattern = "[a-zA-Z0-9 ]{1,15}" required>
             </td>
             <td><button type="submit">Edit</button></td>
           </tr>
@@ -98,7 +98,7 @@
         <div id="cat-form" style="display:none" >
           <form action="/dashboards/<%=dashboard.id%>/categories" method="POST" style="width: 150px" autocomplete="off">
             <label for="name">Add New Category:</label>
-            <input type="text" name="name" style="margin-bottom:20px">
+            <input type="text" name="name" style="margin-bottom:20px" regular pattern = "[a-zA-Z0-9 ]{1,20}" required>
             <button type="submit">ok</button>   
           </form>
           <button class="cancel-form cat-btn" >x</button>
@@ -140,7 +140,7 @@
           <div>
             <% for (let i=0; i<currentMonth.length; i++){ %>
               <% let categoryName = dashboard.categories[i].name %>
-              <p>$<%=currentMonth[i]%> <a class="curr-add-btn btn-floating btn-small waves-light" id=<%=categoryName%> >+</a></p>
+              <p>$<%=currentMonth[i]%> <a class="curr-add-btn btn-floating btn-small waves-light" id="<%=categoryName%>" >+</a></p>
             <%}%>
           </div>
         </div>
@@ -155,14 +155,14 @@
               <label for="category">Category:</label>
               <label for="company">Company:</label>
               <label for="date">Date:</label>
-              <label for="cost" required>Amount:</label>
+              <label for="cost">Amount:</label>
               <label for="comment">Comments:</label>
             </section>
             <Section>
               <input type="text" name="category" required>
-              <input type="text" name="company">
-              <input type="date" name="date" value=<%=today.toISOString().slice(0,10)%>>
-              <input type="text" name="cost">
+              <input type="text" name="company" regular pattern = "[a-zA-Z0-9 ]{1,20}">
+              <input type="date" name="date" value="<%=today.toISOString().slice(0,10)%>" required>
+              <input type="number" name="cost" required min="0">
               <input type="text" name="comment">
               <button type="submit">done</button>               
             </Section>  
@@ -177,14 +177,14 @@
               <label for="category">Income:</label>
               <label for="company">Company:</label>
               <label for="date">Date:</label>
-              <label for="cost" required>Amount:</label>
+              <label for="cost">Amount:</label>
               <label for="comment">Comments:</label>
             </section>
             <section>
               <input type="text" name="incomeType" required>
-              <input type="text" name="company">
-              <input type="date" name="date" value=<%=today.toISOString().slice(0,10)%>>
-              <input type="text" name="income">
+              <input type="text" name="company" regular pattern = "[a-zA-Z0-9 ]{1,20}">
+              <input type="date" name="date" value="<%=today.toISOString().slice(0,10)%>">
+              <input type="number" name="income" required min="0">
               <input type="text" name="comment">
               <button type="submit">done</button>
             </section>
@@ -200,7 +200,7 @@
         <div id="income-form" style="display: none">
           <form action="/dashboards/<%=dashboard.id%>/incomes" method="POST" style="width: 150px" autocomplete="off">
             <label for="incomeType">Add New Income Source:</label>
-            <input type="text" name="incomeType" style="margin-bottom:20px"/>
+            <input type="text" name="incomeType" style="margin-bottom:20px" required regular pattern = "[a-zA-Z0-9 ]{1,20}">
             <button type="submit">ok</button>
               
           </form>
@@ -249,7 +249,7 @@
           <div>
             <% for (let i=0; i<currentMonthIncome.length; i++){ %>
               <% let incomeName = dashboard.incomes[i].incomeType %>
-                <p>$<%=currentMonthIncome[i]%> <a class="curr-add-btn btn-floating btn-small waves-light" id=<%=incomeName%> >+</a></p>
+                <p>$<%=currentMonthIncome[i]%> <a class="curr-add-btn btn-floating btn-small waves-light" id="<%=incomeName%>" >+</a></p>
               <%}%>
           </div>
         </div>

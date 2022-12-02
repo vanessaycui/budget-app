@@ -18,11 +18,12 @@
   <div id="income-settings-form" class="form-overlay" style="display:none" >
     <div>
       <table>
-        <form action="/dashboards/<%=dashboard.id%>/incomes/<%=income.id%>?_method=PUT" method="POST">
+        <form action="/dashboards/<%=dashboard.id%>/incomes/<%=income.id%>?_method=PUT" method="POST" autocomplete="off">
           <tr>
             <td>
               <label>Edit Income Name:</label>
-              <input type="text" name="incomeType" value=<%=income.incomeType%>>
+              <input type="text" name="incomeType" value=<%=income.incomeType%> regular pattern = "[a-zA-Z0-9 ]{1,20}" required>
+              <p>Please ensure new name includes 1-20 alphanumeric characters, including spaces and _</p>
             </td>
             <td>
               <button type="submit">Edit</button>
@@ -74,19 +75,16 @@
                       <form action="/entries/<%=entry.id%>/incomes/<%=income.id%>?_method=PUT" method="POST" autocomplete="off">
                         
                         <label for="company">Company:</label>
-                        <input type="text" name="company" value=<%=entry.company%>>
+                        <input type="text" name="company" value=<%=entry.company%> regular pattern = "[a-zA-Z0-9 ]{1,20}">
                               
                         <label for="date">Date:</label>
-                        <input type="date" name="date" value=<%=entry.date.toISOString().slice(0,10)%>>
+                        <input type="date" name="date" value=<%=entry.date.toISOString().slice(0,10)%> required>
                              
-                        <label for="cost" required>Amount:</label>
-                        <input type="text" name="income" value=<%=parseInt(entry.income)%>>
+                        <label for="cost">Amount:</label>
+                        <input type="number" name="income" value=<%=parseInt(entry.income)%> min="0" required>
                              
                         <label for="comment">Comments:</label>
                         <input type="text" name="comment" value=<%=entry.comment%>>
-
-                        <label for="person">Member:</label>
-                        <input type="text" name="person" value="<%=entry.person%>">
                         <button type="submit">done</button>
                       </form>
                       <button class="cancel-edit">x</button>

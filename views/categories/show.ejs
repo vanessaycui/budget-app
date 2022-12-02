@@ -17,21 +17,22 @@
     <div id="cat-settings-form" class="form-overlay" style="display:none" >
         <div>
         <table>
-            <form action="/dashboards/<%=dashboard.id%>/categories/<%=category.id%>?_method=PUT" method="POST">
-            <tr>
-                <td>
-                    <label>Edit Category Name:</label>
-                    <input type="text" name="name" value=<%=category.name%>>
-                </td>
-                <td><button type="submit">Edit</button></td>
-            </tr>
+            <form action="/dashboards/<%=dashboard.id%>/categories/<%=category.id%>?_method=PUT" method="POST" autocomplete="off">
+                <tr>
+                    <td>
+                        <label>Edit Category Name:</label>
+                        <input type="text" name="name" value="<%=category.name%>" regular pattern = "[a-zA-Z0-9 ]{1,20}" required>
+                        <p>Please ensure new name only includes 1-20 alphanumeric characters, including spaces and _</p>
+                    </td>
+                    <td><button type="submit">Edit</button></td>
+                </tr>
             </form>
             <form action="/dashboards/<%=dashboard.id%>/categories/<%=category.id%>?_method=DELETE" method="POST">
-            <tr>
-             
-                <td><label> I want to delete this category:</label></td>
-                <td><button type="submit">delete</button></td>
-            </tr>
+                <tr>
+                
+                    <td><label> I want to delete this category:</label></td>
+                    <td><button type="submit">delete</button></td>
+                </tr>
             </form>
             <tr>
      
@@ -65,17 +66,15 @@
                     <td style="width: 200px">
                         <a class="edit-btn" id="<%=entry.id%>">edit</a>
                         <div id="form-<%=entry.id%>" style="display:none" class="show-edit-form">
-                            <form action="/entries/<%=entry.id%>/categories/<%=category.id%>?_method=PUT" method="POST">
+                            <form action="/entries/<%=entry.id%>/categories/<%=category.id%>?_method=PUT" method="POST" autocomplete="off">
                                 <label for="company">Company:</label>
-                                <input type="text" name="company" value=<%=entry.company%>>
+                                <input type="text" name="company" value="<%=entry.company%>">
                                 <label for="date">Date:</label>
-                                <input type="date" name="date" value=<%=today.toISOString().slice(0,10)%>>
+                                <input type="date" name="date" value="<%=today.toISOString().slice(0,10)%>">
                                 <label for="cost" required>Amount:</label>
-                                <input type="text" name="cost" value=<%=entry.cost%>>
+                                <input type="number" name="cost" value="<%=entry.cost%>" min="0">
                                 <label for="comment">Comments:</label>
                                 <input type="text" name="comment" value=<%=entry.comment%>>
-                                <label for="person">Member:</label>
-                                <input type="text" name="person" value=<%=entry.comment%>>
                                 <button type="submit">done</button>
                             </form>
                             <button class="cancel-edit">cancel</button>
