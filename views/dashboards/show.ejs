@@ -2,7 +2,7 @@
 <nav>
   <div>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="/dashboards">DASHBOARDS</a></li>
+      <li><a href="/dashboards">DASHBOARD COLLECTION</a></li>
       <li><a href="/logout">LOGOUT</a></li>
     </ul>
   </div>
@@ -22,8 +22,8 @@
           <tr>
             <td>
               <label>Edit Dashboard Name:</label>
-              <input type="text" name="title" value="<%=dashboard.title%>" regular pattern = "[a-zA-Z0-9 ]{1,20}" required>
-              <p> Please ensure name contains 1-20 alphanumeric characters. Spaces and _ allowed.</p>
+              <input type="text" name="title" value="<%=dashboard.title%>" regular pattern = "[a-zA-Z0-9 ]{1,15}"  required>
+              <p> Please ensure name contains 1-15 alphanumeric characters. Spaces and _ allowed.</p>
             </td>
             <td><button type="submit">Edit</button></td>
           </tr>
@@ -163,7 +163,7 @@
               <input type="text" name="category" required>
               <input type="text" name="company" regular pattern = "[a-zA-Z0-9 ]{1,20}">
               <input type="date" name="date" value="<%=today.toISOString().slice(0,10)%>" required max="<%=today.toISOString().slice(0,10)%>">
-              <input type="number" name="cost" required min="0">
+              <input type="number" name="cost" required min="0" step=".01">
               <input type="text" name="comment">
               <button type="submit">done</button>               
             </Section>  
@@ -186,7 +186,7 @@
               <input type="text" name="incomeType" required>
               <input type="text" name="company" regular pattern = "[a-zA-Z0-9 ]{1,20}">
               <input type="date" name="date" value="<%=today.toISOString().slice(0,10)%>" max="<%=today.toISOString().slice(0,10)%>">
-              <input type="number" name="income" required min="0">
+              <input type="number" name="income" required min="0" step=".01">
               <input type="text" name="comment">
               <button type="submit">done</button>
             </section>

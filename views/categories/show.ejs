@@ -72,7 +72,7 @@
                                 <label for="date">Date:</label>
                                 <input type="date" name="date" value="<%=today.toISOString().slice(0,10)%>" max="<%=today.toISOString().slice(0,10)%>">
                                 <label for="cost" required>Amount:</label>
-                                <input type="number" name="cost" value="<%=entry.cost%>" min="0">
+                                <input type="number" name="cost" value="<%=entry.cost%>" min="0" step=".01">
                                 <label for="comment">Comments:</label>
                                 <input type="text" name="comment" value="<%=entry.comment%>">
                                 <button type="submit">done</button>

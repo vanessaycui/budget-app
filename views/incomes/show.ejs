@@ -82,7 +82,7 @@
                         <input type="date" name="date" value=<%=entry.date.toISOString().slice(0,10)%> required max="<%=today.toISOString().slice(0,10)%>">
                              
                         <label for="cost">Amount:</label>
-                        <input type="number" name="income" value=<%=parseInt(entry.income)%> min="0" required>
+                        <input type="number" name="income" value=<%=parseInt(entry.income)%> min="0" required step=".01">
                              
                         <label for="comment">Comments:</label>
                         <input type="text" name="comment" value="<%=entry.comment%>">
