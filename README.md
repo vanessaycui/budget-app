@@ -37,11 +37,11 @@ View entries for each category by clicking on the category name. Edit, update, d
 ## **TECHNOLOGIES**
 
 * HTML
-* CSS
+* CSS, Materialize CSS
 * JavaScript
 * Node.js
 * Express.js
-* Passport.js
+* Passport.js, Google OAuth
 * Chart.js
 * Mongoose
 * MongoDB, MongoDB Atlas, MongoDB Compass
