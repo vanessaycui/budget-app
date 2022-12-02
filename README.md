@@ -66,11 +66,11 @@ Please see my trello board for planned features, updates, and fixes:
 ## **NEXT STEPS**
 
 The following enhancements are some exciting features I will be implementing in the near future:
-* Additional graphs to draw more insights on your spending habits
+* Additional graphs to draw more insight on your spending habits
 * Graphs showing projections based on your current spending habits
 * Exporting your entries 
 * Creating a mobile-friendly version (web or app)
-
+* Implementing a React frontend to make a full SPA application. 
 For more details on next steps, please take a look at my trello board linked above! 
 
 <hr>
