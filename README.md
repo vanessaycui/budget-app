@@ -19,13 +19,14 @@ This application includes the following features:
 ## **SCREENSHOTS**
 
 <div style="display:flex; flex-direction: column;gap:10px; width: 800px;">
-Login and start by creating a new dashboards.
-<img style="flex: 0 0 100%; height: 300px;" src="https://media.giphy.com/media/6LoouL2QwNCSVLWGIb/giphy.gif">
-Add categories, income source, and entries to populate the database. The graphs will automatically populate with your data.
-<img style="flex: 0 0 100%; height: 300px;" src="https://media.giphy.com/media/wEml6VtPMR75ofQJ7E/giphy.gif">
-View entries for each category by clicking on the category name. Edit, update, delete any of your past entries. 
-<img style="flex: 0 0 100%; height: 300px;" src="https://media.giphy.com/media/X975AeJMuO905FXoYI/giphy.gif">
 
+<img style="flex: 0 0 100%; height: 300px;" src="https://media.giphy.com/media/6LoouL2QwNCSVLWGIb/giphy.gif">
+
+<img style="flex: 0 0 100%; height: 300px;" src="https://media.giphy.com/media/wEml6VtPMR75ofQJ7E/giphy.gif">
+Login and start by creating a new dashboards.Add categories, income source, and entries to populate the database.
+<img style="flex: 0 0 100%; height: 300px;" src="https://media.giphy.com/media/6RAZmC5Oxz1PTNHQkm/giphy.gif">
+<img style="flex: 0 0 100%; height: 300px;" src="https://media.giphy.com/media/X975AeJMuO905FXoYI/giphy.gif">
+View entries for each category by clicking on the category name. Edit, update, delete any of your past entries. 
 
 
 </div>
@@ -50,45 +51,27 @@ View entries for each category by clicking on the category name. Edit, update, d
 <hr>
 <h2><strong>GETTING STARTED</strong></h2>
 
-HOW TO START:
-1. Enter your username (max length is 6 characters) & click **START**
-2. After you lose, click **RESET** to play again.
-
-HOW TO PLAY:
-1. The snake will move instantly. **Use your arrow keys to move.**
-2. Avoid the pink/red food -- you'll lose 5 points.
-3. Try to catch the blue and light blue food -- you'll gain 1 and 10 points, respectively.
-4. Avoid the borders, you'll lose instantly.
-5. Avoid colliding with yourself, you'll lose instantly.
-6. If your points go below 0, you'll lose.
-7. Gain enough points for your name to be shown on the TOP SCORES list. 
-8. Compete with family & friends.  
-
-HOW TO STOP:
-1. Click RESET. ***If RESET was clicked mid-play, your score will not be recorded.***
-
-TWO WAYS TO CLEAR SCORE RECORDS:
-1. Hard way: Clear your brower's cookies and site data. Close & reopen your browser.
-2. Easy way: Type localStorage.clear("highScoreData") in your console, enter, and refresh your page.
 
 
-This game is hosted on GitHub Pages! 
-Click on the link below to play.
+This app is deployed on RailWay! 
+Please click on the link below to access the budget app:
 
-<button style="padding: 20px; font-size: 30px; border-radius: 10px; background-color: #8EC3B0; border: none;" ><strong><a style="color: white; text-decoration: none;" href="https://vanessaycui.github.io/snake-game/">PLAY SNAKE</a></strong></button>
+<button style="padding: 20px; font-size: 30px; border-radius: 10px; background-color: #8EC3B0; border: none;" ><strong><a style="color: white; text-decoration: none;" href="https://budget-app.up.railway.app/">BUDGET APP</a></strong></button>
 
+Please see my trello board for planned features, updates, and fixes:
+
+<button style="padding: 20px; font-size: 30px; border-radius: 10px; background-color: #8EC3B0; border: none;" ><strong><a style="color: white; text-decoration: none;" href="https://trello.com/b/uW3unMH0/project-2-budget-app">trello</a></strong></button>
 
 <hr>
 
 ## **NEXT STEPS**
 
 The following enhancements are some exciting features I will be implementing in the near future:
-* Adding sound effects
-* Option to include or exclude boosters/poisonous food in the game
-* Option for Player vs Player
-* Creating a backend to store top scores so players can compete against each other online
+* Additional graphs to draw more insights on your spending habits
+* Graphs showing projections based on your current spending habits
+* Exporting your entries 
 * Creating a mobile-friendly version (web or app)
 
-Please feel free to provide some feedback. Open to all suggestions :)
+For more details, please take a look at my trello board above.
 
 <hr>
