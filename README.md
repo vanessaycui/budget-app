@@ -23,12 +23,13 @@ This application includes the following features:
 <img style="flex: 0 0 50%; height: 300px;" src="https://media.giphy.com/media/6LoouL2QwNCSVLWGIb/giphy.gif">
 
 <img style="flex: 0 0 50%; height: 300px;" src="https://media.giphy.com/media/wEml6VtPMR75ofQJ7E/giphy.gif">
-<br>
-Login and start by creating a new dashboards.Add categories, income source, and entries to populate the database.
+
 <img style="flex: 0 0 50%; height: 300px;" src="https://media.giphy.com/media/6RAZmC5Oxz1PTNHQkm/giphy.gif">
 <img style="flex: 0 0 50%; height: 300px;" src="https://media.giphy.com/media/X975AeJMuO905FXoYI/giphy.gif">
-<br>
+Login and start by creating a new dashboards.Add categories, income source, and entries to populate the database.
 View entries for each category by clicking on the category name. Edit, update, delete any of your past entries. 
+
+
 
 
 </div>
