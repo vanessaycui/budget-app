@@ -17,9 +17,8 @@
     <div id="cat-settings-form" class="form-overlay" style="display:none" >
         <div>
         <table>
-            <form action="/dashboards/<%=dashboard.id%>/categories/<%=category.id%>?_method=PUT" method="POST">            <tr>
+            <form action="/dashboards/<%=dashboard.id%>/categories/<%=category.id%>?_method=PUT" method="POST">
             <tr>
-           
                 <td>
                     <label>Edit Category Name:</label>
                     <input type="text" name="name" value=<%=category.name%>>
@@ -63,7 +62,7 @@
                             <button type="submit">delete</button>
                         </form>
                     </td>
-                    <td>
+                    <td style="width: 200px">
                         <a class="edit-btn" id="<%=entry.id%>">edit</a>
                         <div id="form-<%=entry.id%>" style="display:none" class="show-edit-form">
                             <form action="/entries/<%=entry.id%>/categories/<%=category.id%>?_method=PUT" method="POST">

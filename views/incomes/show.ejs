@@ -1,4 +1,13 @@
 <%- include("../partials/header.ejs")%>
+<nav>
+  <div>
+    <a class="brand-logo" href="/dashboards/<%=dashboard.id%>"> <- go back to <%=dashboard.title%></a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="/dashboards">DASHBOARD COLLECTION</a></li>
+      <li><a href="/logout">LOGOUT</a></li>
+    </ul>
+  </div>
+</nav>
 <div class="entry-show-page">
   <div class="show-header">
     <h1> Entries for <%=income.incomeType%>:</h1>
@@ -59,10 +68,10 @@
                       <button type="submit">delete</button>
                   </form>
               </td>
-              <td>
+              <td style="width: 200px">
                   <a class="edit-btn" id=<%=entry.id%>>edit</a>
                   <div id="form-<%=entry.id%>" style="display:none" class="show-edit-form">
-                      <form action="/entries/<%=entry.id%>/incomes/<%=income.id%>?_method=PUT" method="POST">
+                      <form action="/entries/<%=entry.id%>/incomes/<%=income.id%>?_method=PUT" method="POST" autocomplete="off">
                         
                         <label for="company">Company:</label>
                         <input type="text" name="company" value=<%=entry.company%>>

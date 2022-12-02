@@ -1,25 +1,26 @@
 :root{
-  --all-background-color: whitesmoke;
+  --all-background-color: #F6F6F6;
   --navbar-bg-color: rgba(255,255,255,0);
-  --navbar-font-color: black;
-  --navbar-font-color-hover: aquamarine;
-  --login-card-bg: whitesmoke;
+  --navbar-font-color: #1E2022;
+  --navbar-font-color-hover: #C9D6DF;
+  --login-card-bg: #EEEEEE;
 
-  --entry-history-color: black;
-  --dashboard-card-bg: rgb(97, 90, 90);
-  --dashboard-card-font: aquamarine;
+  --entry-history-color: #1E2022;
+  --dashboard-card-bg: #497174;
+  --dashboard-card-font: #D6E4E5;
 
-  --column-data-color: rgb(97, 90, 90);
-  --column-data-income: green;
-  --table-font-color: aquamarine;
+  --column-data-color:#EFF5F5;
+  --table-font-color: #1E2022;
   --column-curr-add-btn: purple;
-  --column-curr-add-btn-bg: whitesmoke;
-  --column-curr-add-btn-bg-hover: pink;
-  --column-cat-text-color: aquamarine;
-  --column-cat-text-color-hover: pink;
-  --column-income-text-color: aquamarine;
-  --column-income-text-color-hover: pink;
+  --column-curr-add-btn-bg: #AAAAAA;
+  --column-curr-add-btn-bg-hover: #497174;
+  --column-cat-text-color: #1E2022;
+  --column-cat-text-color-hover: #EB6440;
+  --column-income-text-color: #1E2022;
+  --column-income-text-color-hover: #EB6440;
   --dash-edit-delete-form-overlay-bg: rgba(255,255,255,0.9);
+
+  --bad-numbers: #EB6440;
 }
 
 body {
@@ -86,7 +87,7 @@ nav .brand-logo {
 #dashboard-show-header{
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   height: 130px;
 }
 
@@ -203,6 +204,8 @@ button:hover{
   align-items: center;
   height: 100px;
   background-color: var(--column-data-color);
+  border: 1px solid #497174;
+  font-weight: 600;
   border-radius: 10px;
   padding: 5px 0 0 0;
   font-size: 1rem;
@@ -222,7 +225,9 @@ button:hover{
   height: 40px;
   min-width: 150px;
   font-size: 1rem;
+  font-weight: 600;
   background-color: var(--column-data-color);
+  border: 1px solid #497174;
   border-radius: 10px;
   padding: 10px 0 0 0;
 }
@@ -246,9 +251,43 @@ button:hover{
   height: 100%;
   min-width: 150px;
   background-color: var(--column-data-color);
+  border: 1px solid #497174;
   border-radius: 10px;
   flex: auto;
 }
+.data-money{
+  margin: 0 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: right;
+  min-height: 220px;
+  height: 100%;
+  min-width: 150px;
+  background-color: var(--column-data-color);
+  border: 1px solid #497174;
+  border-radius: 10px;
+  flex: auto;
+
+
+}
+.data-money-plus{
+  margin: 0 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: right;
+  min-height: 220px;
+  height: 100%;
+  min-width: 150px;
+  background-color: var(--column-data-color);
+  border: 1px solid #497174;
+  border-radius: 10px;
+  flex: auto;
+}
+
 
 #cat-list>a{
   display: block;
@@ -281,21 +320,6 @@ button:hover{
   transition: 0.3s;
 }
 
-.data-col-income{
-  margin: 0 1%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  text-align: center;
-  min-height: 150px;
-  height: 100%;
-  min-width: 150px;
-  background-color: var(--column-data-color);
-  border-radius: 10px;
-  flex: auto;
-}
-
 #income-list{
   color: var(--column-data-income)
 }
@@ -311,7 +335,7 @@ button:hover{
   margin-left: 10px
 }
 .btn-small:hover {
-  background-color:var(--column-cat-text-color-hover);
+  background-color:var(--column-curr-add-btn-bg-hover);
   transition: 0.1s;
 }
 /* ----------styling entry forms -------------- */
@@ -366,23 +390,29 @@ button:hover{
   transition: box-shadow .3s, border .3s, -webkit-box-shadow .3s;
 }
 #entry-history>div{
-  height: 150px;
+  height: 220px;
   width: 230px;
   background-color: var(--column-data-color);
+  border: 1px solid #497174;
   padding: 10px;
   border-radius:10px;
 }
-#entry-history p,h5{
-  margin: 0;
+#entry-history p{
+  margin: 6px 0px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   font-size: 12px;
   color: var(--column-income-text-color);
   transition: 0.3s;
-
-  
 }
+#entry-history h4{
+  color: var(--column-income-text-color);
+  font-size: 01rem;
+  font-weight: 400;
+  margin: 0;
+}
+
 #dash-chart-container{
   width: 600px;
   height: 300px;
@@ -457,16 +487,23 @@ button:hover{
   height: 200px;
   width: 300px;
   margin-top: 340px;
+  border-radius: 20px;
 
 }
 
-#login-page>div>h1{
+#login-page>div>section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position:absolute;
-  top:200px;
-  font-size: 100px;
-  margin-bottom: 0;
+  top:130px;
+  margin-bottom: 20px;
 }
 
+#login-page>div>section>h1{
+  font-size: 100px;
+  margin-bottom:0;
+}
 
 #google-logo{
   height: 60px;
@@ -544,14 +581,14 @@ button:hover{
 }
 .dashboard-card>a{
   font-size: 15px;
-  color:var(--dashboard-card-font);
+  color:#EFF5F5;
 
   transition: 0.3s;
 }
 
 .dashboard-card>a:hover{
   font-size: 20px;
-
+  color:#EFF5F5;
   transition: 0.3s;
 }
 
@@ -602,7 +639,7 @@ button:hover{
 
 .show-header{
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-end;
   height: 150px;
   margin-top: 10px;
@@ -716,4 +753,9 @@ button:hover{
   padding: 15px 10px;
   cursor:pointer;
   transition: 0.3s;
+}
+
+.btn-floating {
+  background-color: #1E2022;
+
 }

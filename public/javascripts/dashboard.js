@@ -2,8 +2,6 @@
 /*----- constants -----*/
 const entryDivs = document.querySelectorAll("#entry-history>div")
 
-console.log(entryDivs)
-
 /*----- cached element references -----*/
 const addCatBtn = document.querySelector("#add-cat-btn")
 const catForm = document.querySelector("#cat-form")
@@ -44,12 +42,14 @@ new Chart(dashboardChart, {
     {
         label: 'prev. month spending',
         data: prevMonthData,
-        borderWidth: 1
+        borderWidth: 1,
+        backgroundColor: 'rgba(73, 113, 116, 0.95)'
     },
     {
         label: 'current month spending',
         data: currentMonthData,
-        borderWidth: 1
+        borderWidth: 1,
+        backgroundColor: 'rgba(235, 100, 64, 0.95)'
     }
 
     ]

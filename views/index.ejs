@@ -1,7 +1,6 @@
 <%- include("./partials/header.ejs")%>
 <nav>
     <div>
-      <a class="brand-logo">BUDGET APP</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/dashboards">DASHBOARDS</a></li>
         <li><a href="/logout">LOGOUT</a></li>
@@ -12,9 +11,14 @@
 
     <div>
         <% if (user) {%>
-            <h1>LOGOUT</h1>
+            <section>
+                <h1>LOGOUT</h1>
+            </section>
         <%} else {%>
-            <h1>LOGIN</h1>
+            <section>
+                <h1>LOGIN</h1>
+                <h3>to budget app </h3>
+            </section>
         <%}%>
         <input style="display:none" id="user-status" value="<%=user%>">
 

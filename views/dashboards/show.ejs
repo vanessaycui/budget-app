@@ -12,17 +12,14 @@
   <div id="dashboard-show-header">
     <h1><%= dashboard.title %> </h1> 
     <button id="settings-dash">settings</button>
-
   </div>
   
-
   <!-- overlay for editing dashboard -->
   <div class="form-overlay" style="display:none" >
     <div>
         <table id="dash-show-settings">
-          <form action="/dashboards/<%=dashboard.id%>?_method=PUT" method="POST"></form>
+          <form action="/dashboards/<%=dashboard.id%>?_method=PUT" method="POST" autocomplete="off">
           <tr>
-  
             <td>
               <label>Edit Dashboard Name:</label>
               <input type="text" name="title" value="<%=dashboard.title%>">
@@ -30,11 +27,11 @@
             <td><button type="submit">Edit</button></td>
           </tr>
         </form>
-        <form action="/dashboards/<%=dashboard.id%>?_method=DELETE" method="POST"></form>
-        <tr>
-          <td><label>I want to delete this dashboard:</label></td>
-          <td><button type="submit">Delete</button></td>
-        </tr>
+        <form action="/dashboards/<%=dashboard.id%>?_method=DELETE" method="POST" autocomplete="off">
+          <tr>
+            <td><label>I want to delete this dashboard:</label></td>
+            <td><button type="submit">Delete</button></td>
+          </tr>
         </form>
         <tr>
           <td></td>
@@ -97,16 +94,15 @@
     </thead>
     <!-- MAIN TABLE -->
     <tr>
-      <td class="form-row">
-        <div id="cat-form" style="display:none">
-          <form action="/dashboards/<%=dashboard.id%>/categories" method="POST">
+      <td class="form-row" > 
+        <div id="cat-form" style="display:none" >
+          <form action="/dashboards/<%=dashboard.id%>/categories" method="POST" style="width: 150px" autocomplete="off">
             <label for="name">Add New Category:</label>
-            <input type="text" name="name">
+            <input type="text" name="name" style="margin-bottom:20px">
             <button type="submit">ok</button>   
           </form>
           <button class="cancel-form cat-btn" >x</button>
         </div>
-        
       </td>
       <td>
         <div class="data-col-cat">
@@ -118,39 +114,43 @@
         </div>
       </td>
       <td>
-        <div id="percent-change" class="data-col-cat">
+        <div id="percent-change" class="data-money">
           <div>
             <% for (let categoryPer of change ){ %>
-            <p><%=categoryPer%></p>
+              <% if (categoryPer >0){%>
+                <p style="color:var(--bad-numbers)"><strong><%=categoryPer%></strong></p>
+              <%} else{%>
+                <p><%=categoryPer%></p>
+              <%}%>
             <%}%>
           </div>
           </div>
       </td>
       <td>
-        <div id="prev-month-list" class="data-col-cat">
+        <div id="prev-month-list" class="data-money">
           <div>
             <% for (let categoryTotal of prevMonth ){ %>
-            <p><%=categoryTotal%></p>
+            <p>$ <%=categoryTotal%></p>
             <%}%>
           </div>
         </div>
       </td>
       <td>
-        <div id="current-month-list-cat" class="data-col-cat">
+        <div id="current-month-list-cat" class="data-money-plus">
           <div>
             <% for (let i=0; i<currentMonth.length; i++){ %>
               <% let categoryName = dashboard.categories[i].name %>
-              <p><%=currentMonth[i]%> <a class="curr-add-btn btn-floating btn-small waves-light" id=<%=categoryName%> > +</a></p>
+              <p>$<%=currentMonth[i]%> <a class="curr-add-btn btn-floating btn-small waves-light" id=<%=categoryName%> >+</a></p>
             <%}%>
           </div>
         </div>
 
       </td>
-      <td>
+      <td style="width: 200px" >
         <%let date = new Date()%>
         <%let today = new Date(date.getFullYear(), date.getMonth(), date.getDate())%>
         <div id="entry-form-categories" style="display:none" class="entry-forms">
-          <form action="/dashboards/<%=dashboard.id%>/entries" method="POST">
+          <form action="/dashboards/<%=dashboard.id%>/entries" method="POST" style="width: 180px" autocomplete="off" >
             <section>
               <label for="category">Category:</label>
               <label for="company">Company:</label>
@@ -172,7 +172,7 @@
           </section>
         </div>
         <div id="entry-form-income" style="display:none" class="entry-forms">
-          <form action="/dashboards/<%=dashboard.id%>/entries" method="POST">
+          <form action="/dashboards/<%=dashboard.id%>/entries" method="POST" autocomplete="off">
             <section>
               <label for="category">Income:</label>
               <label for="company">Company:</label>
@@ -198,9 +198,9 @@
     <tr>
       <td class="form-row">
         <div id="income-form" style="display: none">
-          <form action="/dashboards/<%=dashboard.id%>/incomes" method="POST">
+          <form action="/dashboards/<%=dashboard.id%>/incomes" method="POST" style="width: 150px" autocomplete="off">
             <label for="incomeType">Add New Income Source:</label>
-            <input type="text" name="incomeType" />
+            <input type="text" name="incomeType" style="margin-bottom:20px"/>
             <button type="submit">ok</button>
               
           </form>
@@ -211,51 +211,54 @@
    
       
       <td>
-        <div class="data-col-income">
+        <div class="data-col-cat">
           <div id="income-list" >
-            
             <% for (let income of dashboard.incomes){ %>
               <a href="/dashboards/<%=dashboard.id%>/incomes/<%=income.id%>"><%=income.incomeType%></a>
             <%}%>
-                
           </div>
         </div>
-
       </td>
       <td>
-        <div id="percent-change" class="data-col-income">
+        <div id="percent-change" class="data-money">
           <div>
             <% for (let incomePer of changeIncome){ %>
-              <p><%=incomePer%></p>
+              <% if (incomePer <0){%>
+                <p style="color: var(--bad-numbers)"><strong><%=incomePer%></strong></p>
+              <%} else{%>
+                <p><%=incomePer%></p>
+              <%}%>
+
+              
             <%}%>
           </div>
         </div>
       </td>
       <td>
-        <div id="prev-month-list" class="data-col-income">
+        <div id="prev-month-list" class="data-money">
           <div>
             <% for (let incomeTotal of prevMonthIncome ){ %>
-              <p><%=incomeTotal%></p>
+              <p>$<%=incomeTotal%></p>
             <%}%>
           </div>
         </div>
 
       </td>
       <td>
-        <div id="curr-month-list-income"class="data-col-income">
+        <div id="curr-month-list-income"class="data-money-plus">
           <div>
             <% for (let i=0; i<currentMonthIncome.length; i++){ %>
               <% let incomeName = dashboard.incomes[i].incomeType %>
-                <p><%=currentMonthIncome[i]%> <a class="curr-add-btn btn-floating btn-small waves-light" id=<%=incomeName%> > + </a></p>
+                <p>$<%=currentMonthIncome[i]%> <a class="curr-add-btn btn-floating btn-small waves-light" id=<%=incomeName%> >+</a></p>
               <%}%>
           </div>
         </div>
       </td>
       <td>
-        <div id="entry-history">
+        <div id="entry-history" style="width: 180px">
           <% for (let category in recentEntries){%>
-            <div id="history-<%=category.split(" ")[0]%>" style="display: none">
-              <h5>Previous Entries:<h5>
+            <div id="history-<%=category.split(" ")[0]%>" style="display: none" >
+              <h4>Previous Entries:<h4>
                 <ul>
                 <% if (recentEntries[category].length <5){%>
                   <%for (let record of recentEntries[category]){%>
@@ -292,18 +295,26 @@
       <td>
         <div class="data-footer">
           <div>
-            <p><%=prevMonthSummary[0]%></p>
-            <p><%=prevMonthSummary[1]%></p>
-            <p><%=prevMonthSummary[2]%></p>
+            <p>$<%=prevMonthSummary[0]%></p>
+            <p>$<%=prevMonthSummary[1]%></p>
+            <% if (prevMonthSummary[2] <0){%>
+              <p style="color:var(--bad-numbers)">$<%=prevMonthSummary[2]%></p>
+            <%} else{%>
+              <p>$<%=prevMonthSummary[2]%></p>
+            <%}%>
           </div>
         </div>
       </td>
       <td>
         <div class="data-footer">
           <div>
-            <p><%=currentMonthSummary[0]%></p>
-            <p><%=currentMonthSummary[1]%></p>
-            <p><%=currentMonthSummary[2]%></p>
+            <p>$<%=currentMonthSummary[0]%></p>
+            <p>$<%=currentMonthSummary[1]%></p>
+            <% if (currentMonthSummary[2] <0){%>
+              <p style="color:var(--bad-numbers)">$<%=currentMonthSummary[2]%></p>
+            <%} else{%>
+              <p>$<%=currentMonthSummary[2]%></p>
+            <%}%>
           </div>
         </div>
       </td>
