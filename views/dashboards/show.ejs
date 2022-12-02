@@ -153,7 +153,7 @@
         <div id="entry-form-categories" style="display:none" class="entry-forms">
           <form action="/dashboards/<%=dashboard.id%>/entries" method="POST" style="width: 180px" autocomplete="off" >
             <section>
-              <label for="category">Category:</label>
+              <label for="category">*Category:</label>
               <label for="company">Company:</label>
               <label for="date">Date:</label>
               <label for="cost">Amount:</label>
@@ -170,12 +170,13 @@
           </form>
           <section>
             <button class="cancel-form">x</button>
+            <label>*Do not change category name</label>
           </section>
         </div>
         <div id="entry-form-income" style="display:none" class="entry-forms">
           <form action="/dashboards/<%=dashboard.id%>/entries" method="POST" autocomplete="off">
             <section>
-              <label for="category">Income:</label>
+              <label for="category">Income*:</label>
               <label for="company">Company:</label>
               <label for="date">Date:</label>
               <label for="cost">Amount:</label>
@@ -192,6 +193,7 @@
             </form>
             <section>
             <button class="cancel-form">x</button>
+            <label>*Do not change income source</label>
             </section>
         </div> 
       </td>

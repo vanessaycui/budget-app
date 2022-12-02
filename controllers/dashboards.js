@@ -38,7 +38,6 @@ function show(req, res) {
     let currentMonthEntries = [];
     let currentMonthEntriesIncome = [];
     let recentEntries = {};
-    // { category: [entries in string form: $xx.xx at company on date ]}
 
     async.series(
       [

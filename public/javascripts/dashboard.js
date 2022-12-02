@@ -106,6 +106,7 @@ currentMonthListCat.addEventListener("click", (event)=>{
         categoryEntryForm.style.display= "flex";
         incomeEntryForm.style.display= "none";
         categoryEntryForm.children[0][0].value=event.target.id
+        categoryEntryForm.children[0][0].pattern=event.target.id
         const history = document.getElementById("history-"+event.target.id)
         history.style.display="flex"
     }
@@ -116,9 +117,10 @@ currentMonthListIncome.addEventListener("click", (event)=>{
     if (event.target.tagName === "A"){
         categoryEntryForm.style.display= "none"
         incomeEntryForm.style.display= "flex";
-        incomeEntryForm.children[0][0].value=event.target.id 
+        console.dir(incomeEntryForm)
+        incomeEntryForm.children[0][0].value=event.target.id
+        incomeEntryForm.children[0][0].pattern=event.target.id
         const history = document.getElementById("history-"+event.target.id.split(" ")[0]) 
-        console.log(event.target.id)
         history.style.display="flex"
     }
 })
