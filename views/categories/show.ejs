@@ -70,7 +70,7 @@
                                 <label for="company">Company:</label>
                                 <input type="text" name="company" value="<%=entry.company%>">
                                 <label for="date">Date:</label>
-                                <input type="date" name="date" value="<%=today.toISOString().slice(0,10)%>">
+                                <input type="date" name="date" value="<%=today.toISOString().slice(0,10)%>" max="<%=today.toISOString().slice(0,10)%>">
                                 <label for="cost" required>Amount:</label>
                                 <input type="number" name="cost" value="<%=entry.cost%>" min="0">
                                 <label for="comment">Comments:</label>

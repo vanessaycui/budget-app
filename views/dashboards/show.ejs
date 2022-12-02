@@ -22,7 +22,8 @@
           <tr>
             <td>
               <label>Edit Dashboard Name:</label>
-              <input type="text" name="title" value="<%=dashboard.title%>" regular pattern = "[a-zA-Z0-9 ]{1,15}" required>
+              <input type="text" name="title" value="<%=dashboard.title%>" regular pattern = "[a-zA-Z0-9 ]{1,20}" required>
+              <p> Please ensure name contains 1-20 alphanumeric characters, including spaces and _</p>
             </td>
             <td><button type="submit">Edit</button></td>
           </tr>
@@ -161,7 +162,7 @@
             <Section>
               <input type="text" name="category" required>
               <input type="text" name="company" regular pattern = "[a-zA-Z0-9 ]{1,20}">
-              <input type="date" name="date" value="<%=today.toISOString().slice(0,10)%>" required>
+              <input type="date" name="date" value="<%=today.toISOString().slice(0,10)%>" required max="<%=today.toISOString().slice(0,10)%>">
               <input type="number" name="cost" required min="0">
               <input type="text" name="comment">
               <button type="submit">done</button>               
@@ -183,7 +184,7 @@
             <section>
               <input type="text" name="incomeType" required>
               <input type="text" name="company" regular pattern = "[a-zA-Z0-9 ]{1,20}">
-              <input type="date" name="date" value="<%=today.toISOString().slice(0,10)%>">
+              <input type="date" name="date" value="<%=today.toISOString().slice(0,10)%>" max="<%=today.toISOString().slice(0,10)%>">
               <input type="number" name="income" required min="0">
               <input type="text" name="comment">
               <button type="submit">done</button>

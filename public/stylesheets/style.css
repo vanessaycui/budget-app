@@ -20,6 +20,7 @@
   --column-income-text-color-hover: #EB6440;
   --dash-edit-delete-form-overlay-bg: rgba(255,255,255,0.9);
 
+  --login-hover-color: #FFE8D6;
   --bad-numbers: #EB6440;
 }
 
@@ -486,8 +487,13 @@ button:hover{
   background-color: var(--login-card-bg);
   height: 200px;
   width: 300px;
-  margin-top: 340px;
+  margin-top: 380px;
   border-radius: 20px;
+}
+
+#login-card:hover{
+  background-color:  var(--login-hover-color);
+  transition: 0.5s;
 
 }
 

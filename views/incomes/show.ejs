@@ -58,6 +58,7 @@
           <td>Amount</td>
           <td>Comments</td>
       </thead>
+      <%let today = new Date()%>
       <%results.forEach(entry=>{%>
           <tr>
               <td><p><%=entry.date.toISOString().slice(0,10)%></p></td>
@@ -78,7 +79,7 @@
                         <input type="text" name="company" value=<%=entry.company%> regular pattern = "[a-zA-Z0-9 ]{1,20}">
                               
                         <label for="date">Date:</label>
-                        <input type="date" name="date" value=<%=entry.date.toISOString().slice(0,10)%> required>
+                        <input type="date" name="date" value=<%=entry.date.toISOString().slice(0,10)%> required max="<%=today.toISOString().slice(0,10)%>">
                              
                         <label for="cost">Amount:</label>
                         <input type="number" name="income" value=<%=parseInt(entry.income)%> min="0" required>
