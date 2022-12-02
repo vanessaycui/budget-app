@@ -316,9 +316,11 @@ function createDashboard(req, res) {
 
 function deleteDashboard(req, res) {
   Dashboard.findById(req.params.id).exec(function (err, dashboard) {
-    dashboard.remove();
-    dashboard.save(function (err) {
-      res.redirect("/dashboards");
+    Entry.deleteMany({dashboard: dashboard.id}).exec(function(err){
+      dashboard.remove();
+      dashboard.save(function (err) {
+        res.redirect("/dashboards");
+      });
     });
   });
 }
