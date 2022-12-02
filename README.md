@@ -1,6 +1,6 @@
 # **BUDGET APP**
 
-Setting financial budgets and making smart financial decisions is hard when you don't know what your personal spending habits are like. Budget app will help with keeping track of your personal finances so you can be one step closer to achieving financial freedom. 
+Setting financial budgets and making smart financial decisions is hard when you don't know what your personal spending habits are like. Budget app will help with keeping track of your personal finances so you can be one step closer to achieving financial independence. 
 
 This application includes the following features:
 * Logging in with OAuth via user's Google Account to access their personal dashboard/tracker
