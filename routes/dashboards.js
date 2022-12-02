@@ -4,13 +4,16 @@ var dashboardsCtrl = require('../controllers/dashboards')
 // OAuth logout route
 router.get('/logout', dashboardsCtrl.logout);
 /* GET users listing. */
-router.get('/', dashboardsCtrl.index);
-router.get('/:id', dashboardsCtrl.show)
-router.delete('/:id', dashboardsCtrl.delete)
-router.put('/:id', dashboardsCtrl.update)
-router.post('/', dashboardsCtrl.create)
+router.get('/', isLoggedIn,dashboardsCtrl.index);
+router.get('/:id', isLoggedIn,dashboardsCtrl.show)
+router.delete('/:id', isLoggedIn,dashboardsCtrl.delete)
+router.put('/:id', isLoggedIn,dashboardsCtrl.update)
+router.post('/', isLoggedIn,dashboardsCtrl.create)
 
-
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) return next()
+    res.redirect('/auth/google')
+  }
 
 
 
