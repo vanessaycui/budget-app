@@ -117,7 +117,8 @@ currentMonthListIncome.addEventListener("click", (event)=>{
         categoryEntryForm.style.display= "none"
         incomeEntryForm.style.display= "flex";
         incomeEntryForm.children[0][0].value=event.target.id 
-        const history = document.getElementById("history-"+event.target.id) 
+        const history = document.getElementById("history-"+event.target.id.split(" ")[0]) 
+        console.log(event.target.id)
         history.style.display="flex"
     }
 })
