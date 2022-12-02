@@ -71,6 +71,6 @@ The following enhancements are some exciting features I will be implementing in 
 * Exporting your entries 
 * Creating a mobile-friendly version (web or app)
 
-For more details, please take a look at my trello board above.
+For more details on next steps, please take a look at my trello board linked above! 
 
 <hr>
