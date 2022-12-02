@@ -8,12 +8,10 @@ module.exports = {
 
 };
 
-
 function createEntry(req, res){
   req.body.dashboard = req.params.id
   let entry = new Entry(req.body)
   entry.save(function(err){
-    console.log("added to entries")
     res.redirect(`/dashboards/${req.params.id}`)
   })         
 }
@@ -28,10 +26,7 @@ function deleteCategoryEntry(req,res){
 }
 
 function updateCategoryEntry(req,res){
-  console.log(req.body)
   Entry.findById(req.params.eId).exec(function(err, entry){
-    console.log(entry)
-
     entry.company =req.body.company
     entry.date = new Date(req.body.date)
     entry.cost = req.body.cost
@@ -53,10 +48,7 @@ function deleteIncomeEntry(req,res){
 }
 
 function updateIncomeEntry(req,res){
-  console.log(req.body)
   Entry.findById(req.params.eId).exec(function(err, entry){
-
-    //need to edit this.
     entry.company =req.body.company
     entry.date = new Date(req.body.date)
     entry.income = req.body.income

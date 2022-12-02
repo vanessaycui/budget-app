@@ -324,9 +324,9 @@ function deleteDashboard(req, res) {
     });
   });
 }
+
 function update(req, res) {
   Dashboard.findById(req.params.id).exec(function (err, dashboard) {
-    console.log(req.body.title)
     dashboard.title = req.body.title;
     dashboard.save(function (err) {
       res.redirect(`/dashboards/${req.params.id}`);

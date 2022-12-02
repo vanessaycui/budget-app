@@ -43,21 +43,19 @@ nav{
 }
 
 nav ul a {
-
   font-size: 1.2rem;
   color: var(--navbar-font-color);
   display: block;
   padding: 0 15px;
-
 }
-nav ul a:hover{
 
+nav ul a:hover{
   background-color: var(--navbar-bg-color);
   cursor: pointer;
   font-style: italic;
 }
-nav .brand-logo:hover{
 
+nav .brand-logo:hover{
   background-color: var(--navbar-bg-color);
   color: var(--navbar-font-color-hover);
   cursor: pointer;
@@ -71,6 +69,7 @@ nav ul li {
 nav div{
   margin: 0 5%;
 }
+
 nav .brand-logo {
   position: absolute;
   color: var(--navbar-font-color);
@@ -96,6 +95,7 @@ nav .brand-logo {
 #dashboard-show-header > h1{
   margin: 0;
 }
+
 #dashboard-show-header button{
   padding: 10px;
   background-color: var(--dashboard-card-bg);
@@ -131,6 +131,7 @@ nav .brand-logo {
   width: 100%;
   z-index: 2;
 }
+
 .form-overlay>div{
   position: relative;
   top: 300px;
@@ -243,8 +244,6 @@ button:hover{
   background-color: var(--column-data-color-hover);
   transition: 0.5s;
 }
-
-
 .data-head>input{
   width: 50px;
   margin: 0 5px;
@@ -252,7 +251,6 @@ button:hover{
 .data-head>p{
   margin: 0 10px;
 }
-
 .data-col-cat{
   margin: 0 1%;
   display: flex;
@@ -454,7 +452,7 @@ button:hover{
 .form-row{
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 .form-row button{
   width: 75px;
@@ -563,9 +561,7 @@ button:hover{
   grid-template-rows:  150px 1fr;
   grid-template-areas: "title title"
   "dash create";
-
   min-width: 900px;
-
 }
 
 #dash-index-header{
@@ -613,7 +609,6 @@ button:hover{
 .dashboard-card>a{
   font-size: 15px;
   color:#EFF5F5;
-
   transition: 0.3s;
 }
 
@@ -622,6 +617,7 @@ button:hover{
   color:#EFF5F5;
   transition: 0.3s;
 }
+
 .dashboard-card:hover{
   display: flex;
   justify-content: center;
@@ -641,7 +637,6 @@ button:hover{
   border-radius: 5px;
   border: none;
   transition: 0.3s;
-
 }
 
 #create-dash-section>button:hover{
@@ -651,7 +646,6 @@ button:hover{
   border: none;
   cursor: pointer;
   transition: 0.3s;
-
 }
 
 #dashboard-creation button{
@@ -673,7 +667,6 @@ button:hover{
   transition: 0.3s;
 }
 
-
 /*  ---- categories show page------- */
 .entry-show-page{
   margin: 0 5%;
@@ -684,7 +677,7 @@ button:hover{
   justify-content: flex-start;
   align-items: flex-end;
   height: 150px;
-  margin-top: 10px;
+  margin-top: 5%;
 }
 
 .show-header > h1{
@@ -800,4 +793,42 @@ button:hover{
 .btn-floating {
   background-color: #1E2022;
 
+}
+
+#show-err-msg{
+  display: none;
+  font-size: 1rem;
+  justify-content: center;
+}
+
+/* media queries */
+@media only screen and (max-width: 1100px ) {
+  #dashboard-show-page td{
+    min-width: 150px;
+  }
+}
+
+@media only screen and (max-width: 950px ) {
+  #dashboard-show-page td{
+    min-width: 90px;
+  }
+}
+
+@media only screen and (max-width: 927px ) {
+  #dashboard-show-table{
+    display: none;
+  }
+
+  #show-err-msg{
+    display: flex;
+    font-size: 1rem;
+    justify-content: center;
+  }
+  .entry-show-page{
+    display: none;
+  }
+
+  nav{
+    display: none;
+  }
 }

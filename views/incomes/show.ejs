@@ -12,7 +12,6 @@
   <div class="show-header">
     <h1> Entries for <%=income.incomeType%>:</h1>
     <button id="settings-income">settings</button>
-
   </div>
   <!-- overlay for editing income -->
   <div id="income-settings-form" class="form-overlay" style="display:none" >
@@ -96,6 +95,9 @@
       <%})%>
   </table>
 </div>
+</div>
+<div id="show-err-msg">
+  <h3>Please enlarge your window or find a device with a larger screen to continue!</h3>
 </div>
 <script src="/javascripts/income.js"></script>
 <%- include("../partials/footer.ejs")%>

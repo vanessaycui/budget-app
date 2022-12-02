@@ -8,35 +8,28 @@
   </nav>
 
 <div id="dashboard-index">
-    
-
     <div id="dashboard-content">
         <section id="dash-index-header">
-            <h1>Welcome Back, <%=user.name%></h1>
+            <h1>Welcome back, <%=user.name%></h1>
         </section>
         <section id="dash-card-section">
             <!-- list all of user's dashboard(s) -->
             <h3>Your Dashboards:</h3>
             <div id="dashboard-card-collection">
             <% if (dashboards.length !== 0) { %>
-                
                     <%dashboards.forEach(dashboard=>{%>
                         <div class="dashboard-card">
                         <a href="/dashboards/<%=dashboard.id%>"><%=dashboard.title%></a>
                         </div>
-              
                     <%})%>
             <%} else {%>
-                <p>create a new dashboad to begin</p>
-
+                <p>Create a new dashboad to begin</p>
             <%}%>
             </div>
 
         </section>
         <section id="create-dash-section">
-            
             <button id="create-dash-btn"> Create a new dashboard</button>
-            
             <section id="dashboard-creation" class="hide-form">
                 <form action="/dashboards" method="POST" autocomplete="off">
                     <label for="name">Dashboard title: </label>
@@ -52,12 +45,6 @@
                 <script src="/javascripts/main.js"></script>
 
         </section>
-
-
-    <!-- user has no dashboards, prompt user to create a new dashboard -->
-
-        
     </div>
-
 </div>
 <%- include("../partials/footer.ejs")%>
