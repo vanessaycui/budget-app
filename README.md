@@ -55,7 +55,7 @@ View entries for each category by clicking on the category name. Edit, update, d
 This app is deployed on Railway! 
 Please click on the link below to access the budget app:
 
-<button style="padding: 20px; font-size: 30px; border-radius: 10px; background-color: #8EC3B0; border: none;" ><strong><a style="color: white; text-decoration: none;" href="https://budget-app.up.railway.app/">BUDGET APP</a></strong></button>
+<button style="padding: 20px; font-size: 30px; border-radius: 10px; background-color: #8EC3B0; border: none;" ><strong><a style="color: white; text-decoration: none;" href="https://budget-app-2-production.up.railway.app/">BUDGET APP</a></strong></button>
 
 Please see my trello board for planned features, updates, and fixes:
 
